@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initListener() {
 
-        chapter_one.setOnClickListener{
-            startActivity(Intent(this,FirstActivity::class.java))
+        chapter_one.setOnClickListener {
+            startActivity(Intent(this, FirstActivity::class.java))
         }
 
     }

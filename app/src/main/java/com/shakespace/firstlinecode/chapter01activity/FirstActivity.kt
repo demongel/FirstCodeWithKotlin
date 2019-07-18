@@ -1,13 +1,20 @@
 package com.shakespace.firstlinecode.chapter01activity
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.shakespace.firstlinecode.R
+import com.shakespace.firstlinecode.kotlin.bean.Person
+import kotlinx.android.synthetic.main.activity_first.*
+import kotlin.reflect.jvm.jvmName
 
 class FirstActivity : AppCompatActivity() {
 
@@ -17,11 +24,73 @@ class FirstActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first)
 
+        registerForContextMenu(textView)
+
+        initListener()
+
     }
+
+    private fun initListener() {
+
+        /**
+         * use implicit intent
+         * 1. need action
+         * 2. need addCategory
+         * 3. must have both ,and at least have  <category android:name="android.intent.category.DEFAULT" /> in manifest
+         */
+        tv_to_second.setOnClickListener {
+            try {
+                val intent = Intent()
+                intent.action = "android.intent.action.CUSTOM"
+                intent.addCategory("android.intent.category.CUSTOM")
+                intent.putExtra("data", "From First")
+                startActivity(intent)
+            } catch (e: Exception) {
+                Log.e(TAG, e.message)
+            }
+        }
+
+        tv_dial.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:10086")
+            startActivity(intent)
+        }
+
+
+        tv_for_result.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivityForResult(intent, 0x01)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                0x01 -> {
+
+                    showToast(" Result is ${data?.getStringExtra("result")}")
+                }
+                else -> showToast("Get Nothing")
+            }
+        }
+    }
+
 
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
+        menu?.add(0, 1, 0, "Add")
+        menu?.add(0, 2, 0, "Share")
+        menu?.add(0, 3, 0, "Count")
+    }
 
+    override fun onContextItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            1 -> showToast("add")
+            2 -> showToast("share")
+            3 -> showToast("quit")
+        }
+        return true
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -32,10 +101,12 @@ class FirstActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         when (item?.itemId) {
-            R.id.add -> showToast("add")
+            R.id.add -> {
+                showToast("show")
+                showType()
+            }
             R.id.share -> showToast("share")
             R.id.quit -> showToast("quit")
-
         }
 
 
@@ -50,5 +121,61 @@ class FirstActivity : AppCompatActivity() {
         }
         toast?.show()
     }
+
+
+    /**
+    so , Person::class  will get KClass , and .java will change to java class
+    person::class also can get KClass , but has type projecttion(类型投射，泛型中只能是Person的子类)
+
+    if want to get javaClass
+    1. use   Person::class.java
+    2. use  person.javaClass
+
+     */
+    // 2019-07-17 NOTE:  to show local variable type hint
+    //  try Setting -- editor --Appearance -- show parameter name hints
+    // Cofigure... -- choose kotlin -- tick all in the bottom
+    fun showType() {
+        val person = Person()
+        val stringBuilder = StringBuilder()
+
+        val PersonClass = Person::class
+        val PersonClassInJava = Person::class.java
+
+        val personClass = person::class
+        val personClassInJava = person::class.java
+
+        //  get rumtime type , sometimes error
+        val PersonJavaClass = Person::javaClass
+//        val personJavaClass = person::javaClass
+
+        // 2019-07-17 NOTE:  if Person dont have companion object, could not call Person.javaClass
+        // and one more, Person.javaClass will get type of companion
+        val PersonDotJavaClass = Person.javaClass
+        val personDotJavaClass = person.javaClass
+
+        val kotlin1 = Person.javaClass.kotlin
+        val kotlin = Person::class.java.kotlin.java.kotlin.java.kotlin.java
+
+
+        // PersonClass.simpleName and personClass.simpleName need reflect support
+        stringBuilder.append(
+            "Person::class == ${PersonClass.jvmName} \n" +
+                    "Person::class.java == ${PersonClassInJava.typeName}\n" +
+                    "person::class == ${personClass.jvmName}\n" +
+                    "person::class.java == ${personClassInJava.typeName}\n" +
+                    "Person::javaClass == ${PersonJavaClass.name}\n" +
+//                    "person::javaClass ==  ${personJavaClass.name}\n" +
+                    "Person.javaClass == ${PersonDotJavaClass.typeName}\n" +
+                    "person.javaClass ==  ${personDotJavaClass.typeName}"
+        )
+
+        tv_display.setText(stringBuilder.toString())
+    }
+
+    companion object {
+        const val TAG = "FirstActivity"
+    }
+
 
 }

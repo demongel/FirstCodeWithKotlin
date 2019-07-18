@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FirstCode</string>
     <string name="chapter_one_activity">Chapter One Activity</string>
+    <string name="title_activity_java">JavaActivity</string>
 </resources>

@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="ADD" android:icon="@color/aquamarine" android:id="@+id/add"/>
-    <item android:title="SHARE" android:icon="@color/bisque" android:id="@+id/share"/>
-    <item android:title="QUIT" android:icon="@color/antiquewhite" android:id="@+id/quit"/>
+    <item
+        android:id="@+id/add"
+        android:icon="@color/aquamarine"
+        android:title="ADD" />
+    <item
+        android:id="@+id/share"
+        android:icon="@color/bisque"
+        android:title="SHARE" />
+    <item
+        android:id="@+id/quit"
+        android:icon="@color/antiquewhite"
+        android:title="QUIT" />
 </menu>
