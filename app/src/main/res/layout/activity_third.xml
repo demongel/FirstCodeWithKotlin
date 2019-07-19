@@ -9,14 +9,25 @@
             android:orientation="vertical">
 
         <TextView
+                android:id="@+id/tv_zero"
+                style="@style/HomeTextViewStyle"
+                android:text="This is Third"/>
+
+
+        <TextView
                 android:id="@+id/tv_one"
                 style="@style/HomeTextViewStyle"
-                android:text="One" />
+                android:text="One"/>
 
         <TextView
                 android:id="@+id/tv_two"
                 style="@style/HomeTextViewStyle"
-                android:text="Two" />
+                android:text="Two"/>
+
+        <TextView
+                android:id="@+id/tv_three"
+                style="@style/HomeTextViewStyle"
+                android:text="Three"/>
 
 
     </LinearLayout>

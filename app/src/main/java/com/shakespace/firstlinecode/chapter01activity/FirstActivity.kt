@@ -1,5 +1,6 @@
 package com.shakespace.firstlinecode.chapter01activity
 
+
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -12,10 +13,13 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.shakespace.firstlinecode.R
+import com.shakespace.firstlinecode.global.TAG
 import com.shakespace.firstlinecode.kotlin.bean.Person
 import kotlinx.android.synthetic.main.activity_first.*
 import kotlin.reflect.jvm.jvmName
 
+
+// singleTask
 class FirstActivity : AppCompatActivity() {
 
     var toast: Toast? = null
@@ -46,7 +50,7 @@ class FirstActivity : AppCompatActivity() {
                 intent.putExtra("data", "From First")
                 startActivity(intent)
             } catch (e: Exception) {
-                Log.e(TAG, e.message)
+                Log.e(this.TAG, e.message)
             }
         }
 
@@ -108,7 +112,6 @@ class FirstActivity : AppCompatActivity() {
             R.id.share -> showToast("share")
             R.id.quit -> showToast("quit")
         }
-
 
         return super.onOptionsItemSelected(item)
     }
@@ -172,10 +175,5 @@ class FirstActivity : AppCompatActivity() {
 
         tv_display.setText(stringBuilder.toString())
     }
-
-    companion object {
-        const val TAG = "FirstActivity"
-    }
-
 
 }

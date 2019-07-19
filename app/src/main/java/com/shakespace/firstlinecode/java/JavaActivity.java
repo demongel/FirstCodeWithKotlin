@@ -7,10 +7,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
 import com.shakespace.firstlinecode.R;
 import com.shakespace.firstlinecode.chapter01activity.FirstActivity;
 
 public class JavaActivity extends AppCompatActivity {
+
+    private static final String TAG = "JavaActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class JavaActivity extends AppCompatActivity {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
     }
 
 }
