@@ -54,6 +54,10 @@ class TitleLayout @JvmOverloads constructor(
         iv_back.setOnClickListener {
             context.showToast("click back")
         }
+
+        iv_more.setOnClickListener {
+            context.showToast("Click More")
+        }
     }
 }
 

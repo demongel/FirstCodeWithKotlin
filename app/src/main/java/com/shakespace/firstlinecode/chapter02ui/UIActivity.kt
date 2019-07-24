@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import com.shakespace.firstlinecode.R
 import com.shakespace.firstlinecode.global.showToast
+import com.shakespace.firstlinecode.global.start
 import kotlinx.android.synthetic.main.activity_ui.*
 
 class UIActivity : AppCompatActivity() {
@@ -30,6 +31,14 @@ class UIActivity : AppCompatActivity() {
 
         rb_hide.setOnClickListener {
             progress_bar.visibility = View.INVISIBLE
+        }
+
+        tv_listview.setOnClickListener {
+            start(ListViewActivity::class.java)
+        }
+
+        tv_recyclerview.setOnClickListener {
+            start(RecyclerViewActivity::class.java)
         }
 
     }
@@ -56,11 +65,11 @@ class UIActivity : AppCompatActivity() {
         AlertDialog.Builder(this).apply {
             setTitle("Hint")
             setMessage("Are you OK?")
-            setPositiveButton("OK") { dialog, which ->
+            setPositiveButton("OK") { _, _ ->
                 showToast("you click OK")
             }
 
-            setNegativeButton("Cancel") { dialog, which ->
+            setNegativeButton("Cancel") { _, _ ->
                 showToast("Canceled")
             }
             show()

@@ -42,3 +42,10 @@ fun Context.showToast(msg: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, msg, duration).show()
 }
 
+
+//  need  need androidx  for this.currentList
+//fun <T, VH : RecyclerView.ViewHolder> ListAdapter<T, VH>.updateList(list: List<T>?) {
+//    this.submitList(if (list == this.currentList) list?.toList() else list)
+//}
+
+

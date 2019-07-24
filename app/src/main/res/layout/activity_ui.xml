@@ -9,14 +9,14 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_one"
+            android:id="@+id/tv_listview"
             style="@style/HomeTextViewStyle"
-            android:text="One" />
+            android:text="ListView" />
 
         <TextView
-            android:id="@+id/tv_two"
+            android:id="@+id/tv_recyclerview"
             style="@style/HomeTextViewStyle"
-            android:text="Two" />
+            android:text="RecyclerView" />
 
         <ImageView
             android:layout_width="50dp"

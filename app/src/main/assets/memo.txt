@@ -1,0 +1,4 @@
+
+27.1.1
+/Users/ez44446/Programme/gradle/.gradle/caches/modules-2/files-2.1/com.android.support/recyclerview-v7/27.1.1/ad225a74247e675db0b05ea4f8b17202acbb7f9d
+
