@@ -1,44 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.shakespace.firstlinecode">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.shakespace.firstlinecode">
 
     <application
-        android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".chapter02ui.RecyclerViewActivity"></activity>
-        <activity android:name=".chapter02ui.ListViewActivity" />
-        <activity android:name=".chapter02ui.UIActivity" />
+            android:allowBackup="false"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".chapter02ui.ChatActivity">
+        </activity>
+        <activity android:name=".chapter02ui.RecyclerViewActivity"/>
+        <activity android:name=".chapter02ui.ListViewActivity"/>
+        <activity android:name=".chapter02ui.UIActivity"/>
         <activity
-            android:name=".chapter01activity.ThirdActivity"
-            android:launchMode="singleInstance" />
+                android:name=".chapter01activity.ThirdActivity"
+                android:launchMode="singleInstance"/>
         <activity
-            android:name=".chapter01activity.SecondActivity"
-            android:launchMode="singleTop">
+                android:name=".chapter01activity.SecondActivity"
+                android:launchMode="singleTop">
             <intent-filter>
-                <action android:name="android.intent.action.CUSTOM" />
+                <action android:name="android.intent.action.CUSTOM"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.CUSTOM" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.CUSTOM"/>
             </intent-filter>
         </activity>
         <activity
-            android:name=".java.JavaActivity"
-            android:label="@string/title_activity_java"
-            android:theme="@style/AppTheme.NoActionBar" />
+                android:name=".java.JavaActivity"
+                android:label="@string/title_activity_java"
+                android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".chapter01activity.FirstActivity"
-            android:launchMode="singleTask" />
+                android:name=".chapter01activity.FirstActivity"
+                android:launchMode="singleTask"/>
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>

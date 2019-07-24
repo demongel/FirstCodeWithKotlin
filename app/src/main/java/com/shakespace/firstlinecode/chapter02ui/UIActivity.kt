@@ -41,6 +41,10 @@ class UIActivity : AppCompatActivity() {
             start(RecyclerViewActivity::class.java)
         }
 
+        tv_chat.setOnClickListener {
+            start(ChatActivity::class.java)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

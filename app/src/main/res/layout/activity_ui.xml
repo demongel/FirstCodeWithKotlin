@@ -1,58 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_listview"
-            style="@style/HomeTextViewStyle"
-            android:text="ListView" />
-
-        <TextView
-            android:id="@+id/tv_recyclerview"
-            style="@style/HomeTextViewStyle"
-            android:text="RecyclerView" />
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:src="@color/blueviolet" />
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            style="?android:progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="invisible" />
-
-        <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/tv_listview"
+                style="@style/HomeTextViewStyle"
+                android:text="ListView"/>
+
+        <TextView
+                android:id="@+id/tv_recyclerview"
+                style="@style/HomeTextViewStyle"
+                android:text="RecyclerView"/>
+
+        <TextView
+                android:id="@+id/tv_chat"
+                style="@style/HomeTextViewStyle"
+                android:text="To Chat"/>
+
+        <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@color/blueviolet"/>
+
+        <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="invisible"/>
+
+        <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/rb_show"
-                style="@style/RadioButtonCommonStyle"
-                android:checked="true"
-                android:text="SHOW" />
+                    android:id="@+id/rb_show"
+                    style="@style/RadioButtonCommonStyle"
+                    android:checked="true"
+                    android:text="SHOW"/>
 
             <RadioButton
-                android:id="@+id/rb_hide"
-                style="@style/RadioButtonCommonStyle"
-                android:text="HIDE" />
+                    android:id="@+id/rb_hide"
+                    style="@style/RadioButtonCommonStyle"
+                    android:text="HIDE"/>
 
         </RadioGroup>
 
         <com.shakespace.firstlinecode.chapter02ui.TitleLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
 
     </LinearLayout>

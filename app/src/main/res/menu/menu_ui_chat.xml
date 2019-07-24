@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/send"
+            android:icon="@color/aquamarine"
+            android:title="SEND"/>
+    <item
+            android:id="@+id/receive"
+            android:icon="@color/bisque"
+            android:title="RECEIVE"/>
+
+</menu>
