@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * easy to use TAG for every Class
@@ -44,8 +46,9 @@ fun Context.showToast(msg: String, duration: Int = Toast.LENGTH_SHORT) {
 
 
 //  need  need androidx  for this.currentList
-//fun <T, VH : RecyclerView.ViewHolder> ListAdapter<T, VH>.updateList(list: List<T>?) {
-//    this.submitList(if (list == this.currentList) list?.toList() else list)
-//}
+//  current version :androidx.recyclerview:recyclerview:1.1.0-beta01
+fun <T, VH : RecyclerView.ViewHolder> ListAdapter<T, VH>.updateList(list: List<T>?) {
+    this.submitList(if (list == this.currentList) list.toList() else list)
+}
 
 

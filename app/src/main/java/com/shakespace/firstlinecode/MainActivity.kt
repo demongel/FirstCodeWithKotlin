@@ -2,7 +2,7 @@ package com.shakespace.firstlinecode
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.shakespace.firstlinecode.chapter01activity.FirstActivity
 import com.shakespace.firstlinecode.chapter02ui.UIActivity
 import com.shakespace.firstlinecode.global.start

@@ -1,11 +1,9 @@
 package com.shakespace.firstlinecode.chapter02ui
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.shakespace.firstlinecode.R
 import com.shakespace.firstlinecode.adapter.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_recycler_view.*
@@ -25,10 +23,15 @@ class RecyclerViewActivity : AppCompatActivity() {
 
         adapter = RecyclerViewAdapter()
 
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         recycler_view.layoutManager = layoutManager
         recycler_view.adapter = adapter
-        recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        recycler_view.addItemDecoration(
+            androidx.recyclerview.widget.DividerItemDecoration(
+                this,
+                androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
+            )
+        )
 
         adapter.submitList(data)
 

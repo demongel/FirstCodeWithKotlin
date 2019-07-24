@@ -1,18 +1,17 @@
 package com.shakespace.firstlinecode.adapter
 
-import android.support.v7.recyclerview.extensions.ListAdapter
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.shakespace.firstlinecode.R
 import com.shakespace.firstlinecode.global.showToast
 
 
 class RecyclerViewAdapter :
-        ListAdapter<String, RecyclerViewAdapter.ViewHolder>(ItemDiffCallback()) {
+    ListAdapter<String, RecyclerViewAdapter.ViewHolder>(ItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -30,7 +29,6 @@ class RecyclerViewAdapter :
                 }
             }
         }
-
     }
 
 
@@ -40,7 +38,7 @@ class RecyclerViewAdapter :
     }
 
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         var tvTitle: TextView
         var tvContent: TextView
 
@@ -63,14 +61,11 @@ class RecyclerViewAdapter :
 }
 
 class ItemDiffCallback : DiffUtil.ItemCallback<String>() {
-
-    override fun areContentsTheSame(p0: String, p1: String): Boolean {
-
-        return p0 == p1
+    override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+        return oldItem == newItem
     }
 
-    override fun areItemsTheSame(p0: String, p1: String): Boolean {
-        return p0 == p1
+    override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+        return oldItem == newItem
     }
-
 }

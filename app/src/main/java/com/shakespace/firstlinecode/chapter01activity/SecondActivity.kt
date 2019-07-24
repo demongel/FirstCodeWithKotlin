@@ -3,7 +3,7 @@ package com.shakespace.firstlinecode.chapter01activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import com.shakespace.firstlinecode.R
 import com.shakespace.firstlinecode.global.TAG

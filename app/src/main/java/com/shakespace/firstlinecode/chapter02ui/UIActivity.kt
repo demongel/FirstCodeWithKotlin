@@ -1,11 +1,11 @@
 package com.shakespace.firstlinecode.chapter02ui
 
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.shakespace.firstlinecode.R
 import com.shakespace.firstlinecode.global.showToast
 import com.shakespace.firstlinecode.global.start
