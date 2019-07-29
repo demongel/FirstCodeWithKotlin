@@ -2,3 +2,129 @@
 27.1.1
 /Users/ez44446/Programme/gradle/.gradle/caches/modules-2/files-2.1/com.android.support/recyclerview-v7/27.1.1/ad225a74247e675db0b05ea4f8b17202acbb7f9d
 
+
+Fragment:
+    use qualifiers:
+        right click --> new --> android resource directory
+                --> chose resource type (eg:layout)
+                --> option qualifiers
+                    eg: country/orientation/density etc
+
+
+
+  int commitInternal(boolean allowStateLoss) {
+        //  if has committed
+        if (mCommitted) throw new IllegalStateException("commit already called");
+        //  default is false
+        if (FragmentManagerImpl.DEBUG) {
+            Log.v(TAG, "Commit: " + this);
+            LogWriter logw = new LogWriter(TAG);
+            PrintWriter pw = new PrintWriter(logw);
+            dump("  ", null, pw, null);
+            pw.close();
+        }
+        //
+        mCommitted = true;
+        // if has addToBackStack
+        if (mAddToBackStack) {
+            mIndex = mManager.allocBackStackIndex(this);
+        } else {
+            mIndex = -1;
+        }
+        mManager.enqueueAction(this, allowStateLoss);
+        return mIndex;
+    }
+
+
+    //  fisrt addtobackstack, will new mBackStackIndices
+    // index =0
+    //  add bse
+        public int allocBackStackIndex(BackStackRecord bse) {
+            synchronized (this) {
+                if (mAvailBackStackIndices == null || mAvailBackStackIndices.size() <= 0) {
+                    if (mBackStackIndices == null) {
+                        mBackStackIndices = new ArrayList<BackStackRecord>();
+                    }
+                    int index = mBackStackIndices.size();
+                    if (DEBUG) Log.v(TAG, "Setting back stack index " + index + " to " + bse);
+                    mBackStackIndices.add(bse);
+                    return index;
+
+                } else {
+                    int index = mAvailBackStackIndices.remove(mAvailBackStackIndices.size()-1);
+                    if (DEBUG) Log.v(TAG, "Adding back stack index " + index + " with " + bse);
+                    mBackStackIndices.set(index, bse);
+                    return index;
+                }
+            }
+        }
+
+
+ public void enqueueAction(OpGenerator action, boolean allowStateLoss) {
+        // check state loss
+        if (!allowStateLoss) {
+            checkStateLoss();
+        }
+        synchronized (this) {
+            if (mDestroyed || mHost == null) {
+                if (allowStateLoss) {
+                    // This FragmentManager isn't attached, so drop the entire transaction.
+                    return;
+                }
+                throw new IllegalStateException("Activity has been destroyed");
+            }
+            if (mPendingActions == null) {
+                mPendingActions = new ArrayList<>();
+            }
+
+            // key point
+            mPendingActions.add(action);
+            scheduleCommit();
+        }
+    }
+
+
+    void scheduleCommit() {
+        synchronized (this) {
+            boolean postponeReady =
+                    mPostponedTransactions != null && !mPostponedTransactions.isEmpty();
+            boolean pendingReady = mPendingActions != null && mPendingActions.size() == 1;
+            if (postponeReady || pendingReady) {
+                mHost.getHandler().removeCallbacks(mExecCommit);
+                mHost.getHandler().post(mExecCommit);
+            }
+        }
+    }
+
+    //  run on main thread
+    public boolean execPendingActions() {
+            ensureExecReady(true);
+
+            boolean didSomething = false;
+            while (generateOpsForPendingActions(mTmpRecords, mTmpIsPop)) {
+                mExecutingActions = true;
+                try {
+                    removeRedundantOperationsAndExecute(mTmpRecords, mTmpIsPop);
+                } finally {
+                    cleanupExec();
+                }
+                didSomething = true;
+            }
+
+            doPendingDeferredStart();
+            burpActive();
+
+            return didSomething;
+        }
+
+      @Override
+        public FragmentTransaction addToBackStack(@Nullable String name) {
+            if (!mAllowAddToBackStack) {
+                throw new IllegalStateException(
+                        "This FragmentTransaction is not allowed to be added to the back stack.");
+            }
+            mAddToBackStack = true;
+            mName = name;
+            return this;
+        }
+

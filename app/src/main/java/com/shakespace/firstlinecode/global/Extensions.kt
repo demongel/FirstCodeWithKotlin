@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
@@ -43,6 +45,18 @@ fun Activity.kill() {
 fun Context.showToast(msg: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, msg, duration).show()
 }
+
+val Context.orientation: Int
+    get() {
+        return this.resources.configuration.orientation
+    }
+
+inline fun FragmentManager.inTransaction(func:FragmentTransaction.()->Unit){
+    val fragmentTransaction = beginTransaction()
+    fragmentTransaction.func()
+    fragmentTransaction.commit()
+}
+
 
 
 //  need  need androidx  for this.currentList

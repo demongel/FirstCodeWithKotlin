@@ -11,8 +11,10 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".chapter02ui.ChatActivity">
+        <activity android:name=".chapter03fragment.NewsActivity">
         </activity>
+        <activity android:name=".chapter03fragment.FragmentActivity"/>
+        <activity android:name=".chapter02ui.ChatActivity"/>
         <activity android:name=".chapter02ui.RecyclerViewActivity"/>
         <activity android:name=".chapter02ui.ListViewActivity"/>
         <activity android:name=".chapter02ui.UIActivity"/>
