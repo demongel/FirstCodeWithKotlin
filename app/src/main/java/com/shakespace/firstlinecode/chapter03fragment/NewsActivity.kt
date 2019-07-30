@@ -34,12 +34,43 @@ class NewsActivity : AppCompatActivity() {
             supportFragmentManager.inTransaction {
                 fragment?.let { show(it) }
             }
-            val currentFragment = supportFragmentManager.findFragmentById(R.id.container)
-//            val currentFragment = supportFragmentManager.findFragmentByTag("content")
+//            val currentFragment = supportFragmentManager.findFragmentById(R.id.container)
+            /**
+             * there are two Collection in FragmentManager
+             * 1. mAdded  (Arraylist<Fragment>)
+             * 2. mActive (SparseArray<Fragment>)
+             *
+             * when you remove(fragment)
+             * will call executeOps() in BackStackRecord
+             *             case OP_REMOVE:
+            f.setNextAnim(op.exitAnim);
+            mManager.removeFragment(f);
+             *  finally:
+             *      mAdded.remove(fragment);
+             *
+             *
+             * but , findFragmentByTag() or byId()
+             *  first will find in mAddeds
+             *  if not  will find in mActives
+             *
+             *
+             * if (f.mRemoving) {
+            if (f.isInBackStack()) {
+            nextState = Math.min(nextState, Fragment.CREATED);
+            } else {
+            nextState = Math.min(nextState, Fragment.INITIALIZING);
+            }
+            }
+            moveToState(f, nextState, f.getNextTransition(), f.getNextTransitionStyle(), false);
+
+            so, if inBackStack ,will move to nextState or CREATED,if nextState no INITIALIZING then fragment will not be destroy
+            if no in BackStack , and nextState is INITIALIZING , fragment will be destroy
+             */
+            val currentFragment = supportFragmentManager.findFragmentByTag("content")
             if (currentFragment != null && currentFragment is NewsContentFragment) {
                 supportFragmentManager.inTransaction {
-                    hide(currentFragment)
-//                    remove(currentFragment)
+                    //                    hide(currentFragment)
+                    remove(currentFragment)
                 }
 
                 /**
@@ -55,7 +86,7 @@ class NewsActivity : AppCompatActivity() {
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             var contentFragment: NewsContentFragment? =
                 supportFragmentManager.findFragmentByTag("content") as NewsContentFragment?
-            if (contentFragment == null) {
+            if (contentFragment == null || contentFragment.isRemoving) {
                 contentFragment = NewsContentFragment.newInstance(news)
                 supportFragmentManager.inTransaction {
                     add(R.id.container, contentFragment, "content")
@@ -94,5 +125,6 @@ class NewsActivity : AppCompatActivity() {
             finish()
         }
     }
+
 
 }
