@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_one"
+            style="@style/HomeTextViewStyle"
+            android:text="Send Custom" />
+
+        <TextView
+            android:id="@+id/tv_two"
+            style="@style/HomeTextViewStyle"
+            android:text="Order Broadcast" />
+
+        <TextView
+            android:id="@+id/tv_three"
+            style="@style/HomeTextViewStyle"
+            android:text="Local Broadcast" />
+
+        <TextView
+            android:id="@+id/tv_four"
+            style="@style/HomeTextViewStyle"
+            android:text="Force Offline" />
+
+        <TextView
+            android:id="@+id/tv_five"
+            style="@style/HomeTextViewStyle"
+            android:text="To Login" />
+
+
+    </LinearLayout>
+
+</ScrollView>

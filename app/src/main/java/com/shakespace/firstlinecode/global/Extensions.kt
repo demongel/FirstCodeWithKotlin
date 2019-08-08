@@ -29,7 +29,7 @@ val Any.TAG: String
  * [clazz] : target activity
  * [bundle] : bundle data
  */
-fun Activity.start(clazz: Class<*>, bundle: Bundle? = null) {
+fun Context.start(clazz: Class<*>, bundle: Bundle? = null) {
     startActivity(Intent(this, clazz).also {
         if (bundle != null) {
             it.putExtra("bundle", bundle)

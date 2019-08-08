@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.shakespace.firstlinecode.chapter01activity.FirstActivity
 import com.shakespace.firstlinecode.chapter02ui.UIActivity
 import com.shakespace.firstlinecode.chapter03fragment.FragmentActivity
+import com.shakespace.firstlinecode.chapter04broadcast.BroadcastActivity
 import com.shakespace.firstlinecode.global.start
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -36,6 +37,9 @@ class MainActivity : AppCompatActivity() {
             start(FragmentActivity::class.java)
         }
 
+        chapter_4.setOnClickListener{
+            start(BroadcastActivity::class.java)
+        }
 
     }
 
