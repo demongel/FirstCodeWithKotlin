@@ -1,5 +1,6 @@
 package com.shakespace.firstlinecode.java;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -10,6 +11,10 @@ import android.view.View;
 
 import com.shakespace.firstlinecode.R;
 import com.shakespace.firstlinecode.chapter01activity.FirstActivity;
+
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 
 public class JavaActivity extends AppCompatActivity {
 
@@ -48,6 +53,28 @@ public class JavaActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    private void saveToFile(){
+        String data ="data";
+        FileOutputStream out = null;
+        BufferedWriter writer = null;
+        try{
+            out = openFileOutput("data", Context.MODE_PRIVATE);
+            writer = new BufferedWriter(new OutputStreamWriter(out));
+            writer.write(data);
+            writer.flush();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                if (writer!=null){
+                    writer.close();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 
 }

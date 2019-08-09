@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".chapter05persistent.PersistentActivity">
+
+    <EditText
+        android:id="@+id/data"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="input something"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/write2file"
+        style="@style/HomeTextViewStyle"
+        android:text="Write to File" />
+
+    <TextView
+        android:id="@+id/read_from_file"
+        style="@style/HomeTextViewStyle"
+        android:text="Read from File" />
+
+    <TextView
+        android:id="@+id/write2sp"
+        style="@style/HomeTextViewStyle"
+        android:text="Write to SP" />
+
+    <TextView
+        android:id="@+id/read_from_sp"
+        style="@style/HomeTextViewStyle"
+        android:text="Read from SP" />
+
+    <TextView
+        android:id="@+id/create_database"
+        style="@style/HomeTextViewStyle"
+        android:text="Create Database" />
+
+    <TextView
+        android:id="@+id/insert_data"
+        style="@style/HomeTextViewStyle"
+        android:text="Create Data" />
+
+    <TextView
+        android:id="@+id/retrieve_data"
+        style="@style/HomeTextViewStyle"
+        android:text="Retrieve Data" />
+
+    <TextView
+        android:id="@+id/update_data"
+        style="@style/HomeTextViewStyle"
+        android:text="Update Data" />
+
+    <TextView
+        android:id="@+id/delete_data"
+        style="@style/HomeTextViewStyle"
+        android:text="Delete Data" />
+
+
+</LinearLayout>

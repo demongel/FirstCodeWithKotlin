@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".chapter04broadcast.practice.LoginActivity"></activity>
+        <activity android:name=".chapter05persistent.PersistentActivity"></activity>
+        <activity android:name=".chapter04broadcast.practice.LoginActivity" />
 
         <receiver
             android:name=".chapter04broadcast.RemoteReceiver"
