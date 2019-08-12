@@ -36,24 +36,30 @@ class PersistentActivity : AppCompatActivity() {
              * String orderBy   :   order
              *
              */
-            val cursor = helper.readableDatabase.query("Book", null, null, null, null, null, null)
+            val cursor = helper.writableDatabase.query("Book", null, null, null, null, null, null)
 
-            Thread(Runnable {
-                if (cursor.moveToFirst()) {
-                    do {
-                        val name = cursor.getString(cursor.getColumnIndex("name"))
-                        val author = cursor.getString(cursor.getColumnIndex("author"))
-                        val pages = cursor.getInt(cursor.getColumnIndex("pages"))
-                        val price = cursor.getDouble(cursor.getColumnIndex("price"))
+            /**
+             * will find log as follow
+            2019-08-12 02:06:48.047 14753-14753/com.shakespace.firstlinecode E/PersistentActivity: result: Code shakespace 332 50.0
+            2019-08-12 02:06:48.047 14753-14753/com.shakespace.firstlinecode I/chatty: uid=10135(com.shakespace.firstlinecode) identical 4 lines
+            2019-08-12 02:06:48.047 14753-14753/com.shakespace.firstlinecode E/PersistentActivity: result: Code shakespace 332 50.0
 
-                        Log.e(
-                            this.TAG, "result: $name $author $pages $price"
-                        )
+             when log mutiply identical message  ,msg will be combine.
+             */
+            if (cursor.moveToFirst()) {
+                do {
+                    val name = cursor.getString(cursor.getColumnIndex("name"))
+                    val author = cursor.getString(cursor.getColumnIndex("author"))
+                    val pages = cursor.getInt(cursor.getColumnIndex("pages"))
+                    val price = cursor.getDouble(cursor.getColumnIndex("price"))
 
-                    } while (cursor.moveToNext())
-                }
-                cursor.close()
-            }).start()
+                    Log.e(
+                        this.TAG, "result: $name $author $pages $price"
+                    )
+
+                } while (cursor.moveToNext())
+            }
+            cursor.close()
 
         }
 

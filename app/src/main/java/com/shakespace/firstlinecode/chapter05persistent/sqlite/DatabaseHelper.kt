@@ -54,4 +54,11 @@ class DatabaseHelper(
     }
 
 
+    /**
+     *  also can use sql to do crud
+     *
+     * db?.rawQuery("select * from Book",null)
+     * db?.execSQL("delete from Book where pages > ?", arrayOf("50"))
+     *
+     */
 }
