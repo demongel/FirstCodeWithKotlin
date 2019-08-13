@@ -1,0 +1,17 @@
+
+
+git status
+
+git diff  <filepath> : check the difference
+
+
+    if  file  is not added
+    git checkout filepath  : can recall change
+
+    if has added
+    git reset HEAD filepath
+
+
+git log     :  show record
+git log <commitId>  :   show particular commit log
+
