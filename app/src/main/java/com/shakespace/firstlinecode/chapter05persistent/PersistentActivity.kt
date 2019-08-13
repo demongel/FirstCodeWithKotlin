@@ -45,6 +45,7 @@ class PersistentActivity : AppCompatActivity() {
             2019-08-12 02:06:48.047 14753-14753/com.shakespace.firstlinecode E/PersistentActivity: result: Code shakespace 332 50.0
 
              when log mutiply identical message  ,msg will be combine.
+             (seems 5 lines per second)
              */
             if (cursor.moveToFirst()) {
                 do {

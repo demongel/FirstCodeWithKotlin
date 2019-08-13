@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="false"
@@ -15,7 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".chapter05persistent.PersistentActivity"></activity>
+        <provider
+            android:name=".chapter06contentprovider.DataProvider"
+            android:authorities="com.shakespace.kotlin.provider"
+            android:enabled="true"
+            android:exported="true"></provider>
+
+        <activity android:name=".chapter06contentprovider.ContentProviderActivity" />
+        <activity android:name=".chapter05persistent.PersistentActivity" />
         <activity android:name=".chapter04broadcast.practice.LoginActivity" />
 
         <receiver

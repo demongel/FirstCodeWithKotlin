@@ -8,6 +8,7 @@ import com.shakespace.firstlinecode.chapter02ui.UIActivity
 import com.shakespace.firstlinecode.chapter03fragment.FragmentActivity
 import com.shakespace.firstlinecode.chapter04broadcast.BroadcastActivity
 import com.shakespace.firstlinecode.chapter05persistent.PersistentActivity
+import com.shakespace.firstlinecode.chapter06contentprovider.ContentProviderActivity
 import com.shakespace.firstlinecode.global.start
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -38,12 +39,16 @@ class MainActivity : AppCompatActivity() {
             start(FragmentActivity::class.java)
         }
 
-        chapter_4.setOnClickListener{
+        chapter_4.setOnClickListener {
             start(BroadcastActivity::class.java)
         }
 
-        chapter_5.setOnClickListener{
+        chapter_5.setOnClickListener {
             start(PersistentActivity::class.java)
+        }
+
+        chapter_6.setOnClickListener {
+            start(ContentProviderActivity::class.java)
         }
 
     }

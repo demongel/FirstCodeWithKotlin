@@ -3,6 +3,7 @@ package com.shakespace.firstlinecode.java;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,11 @@ import java.io.OutputStreamWriter;
 public class JavaActivity extends AppCompatActivity {
 
     private static final String TAG = "JavaActivity";
+
+    static{
+        Log.e(TAG, "static initializer: " );
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
