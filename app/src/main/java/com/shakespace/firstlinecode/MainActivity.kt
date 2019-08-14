@@ -9,6 +9,7 @@ import com.shakespace.firstlinecode.chapter03fragment.FragmentActivity
 import com.shakespace.firstlinecode.chapter04broadcast.BroadcastActivity
 import com.shakespace.firstlinecode.chapter05persistent.PersistentActivity
 import com.shakespace.firstlinecode.chapter06contentprovider.ContentProviderActivity
+import com.shakespace.firstlinecode.chapter07multimedia.MultiMediaActivity
 import com.shakespace.firstlinecode.global.start
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -49,6 +50,10 @@ class MainActivity : AppCompatActivity() {
 
         chapter_6.setOnClickListener {
             start(ContentProviderActivity::class.java)
+        }
+
+        chapter_7.setOnClickListener {
+            start(MultiMediaActivity::class.java)
         }
 
     }

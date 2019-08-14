@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_notification"
+            style="@style/HomeTextViewStyle"
+            android:text="Show Notification" />
+
+        <TextView
+            android:id="@+id/tv_notification2"
+            style="@style/HomeTextViewStyle"
+            android:text="Show Long Notification" />
+
+        <TextView
+            android:id="@+id/tv_take_photo"
+            style="@style/HomeTextViewStyle"
+            android:text="Take Photo" />
+
+        <TextView
+            android:id="@+id/tv_photo_pick"
+            style="@style/HomeTextViewStyle"
+            android:text="Pick Photo" />
+
+        <TextView
+            android:id="@+id/tv_audio"
+            style="@style/HomeTextViewStyle"
+            android:text="To Play Audio" />
+
+        <TextView
+            android:id="@+id/tv_video"
+            style="@style/HomeTextViewStyle"
+            android:text="To Play Video" />
+
+        <!--android:adjustViewBounds="true"-->
+        <ImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:scaleType="fitCenter"
+         />
+
+    </LinearLayout>
+
+</ScrollView>
