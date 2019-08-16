@@ -21,7 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".chapter07multimedia.VideoPlayActivity"></activity>
+        <activity android:name=".chapter08network.WebViewActivity"></activity>
+        <activity android:name=".chapter08network.NetWorkActivity" />
+        <activity android:name=".chapter07multimedia.VideoPlayActivity" />
         <activity android:name=".chapter07multimedia.AudioPlayActivity" />
         <activity android:name=".chapter07multimedia.GambleActivity" />
         <activity android:name=".chapter07multimedia.MultiMediaActivity" /> <!-- meta-data name is fixed -->

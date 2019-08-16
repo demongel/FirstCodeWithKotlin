@@ -2,6 +2,7 @@ package com.shakespace.firstlinecode
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.shakespace.firstlinecode.chapter01activity.FirstActivity
 import com.shakespace.firstlinecode.chapter02ui.UIActivity
@@ -10,6 +11,7 @@ import com.shakespace.firstlinecode.chapter04broadcast.BroadcastActivity
 import com.shakespace.firstlinecode.chapter05persistent.PersistentActivity
 import com.shakespace.firstlinecode.chapter06contentprovider.ContentProviderActivity
 import com.shakespace.firstlinecode.chapter07multimedia.MultiMediaActivity
+import com.shakespace.firstlinecode.chapter08network.NetWorkActivity
 import com.shakespace.firstlinecode.global.start
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -56,6 +58,14 @@ class MainActivity : AppCompatActivity() {
             start(MultiMediaActivity::class.java)
         }
 
+        chapter_8.onClick(NetWorkActivity::class.java)
+
+    }
+
+    private fun View.onClick(clazz: Class<*>) {
+        setOnClickListener {
+            start(clazz)
+        }
     }
 
 
