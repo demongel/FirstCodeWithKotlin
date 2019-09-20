@@ -21,7 +21,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".chapter08network.WebViewActivity"></activity>
+        <service
+            android:name=".chapter09service.MyIntentService"
+            android:exported="false"></service>
+        <service
+            android:name=".chapter09service.CommonService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".chapter09service.ServiceActivity" />
+        <activity android:name=".chapter08network.WebViewActivity" />
         <activity android:name=".chapter08network.NetWorkActivity" />
         <activity android:name=".chapter07multimedia.VideoPlayActivity" />
         <activity android:name=".chapter07multimedia.AudioPlayActivity" />

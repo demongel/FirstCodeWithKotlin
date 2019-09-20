@@ -12,6 +12,7 @@ import com.shakespace.firstlinecode.chapter05persistent.PersistentActivity
 import com.shakespace.firstlinecode.chapter06contentprovider.ContentProviderActivity
 import com.shakespace.firstlinecode.chapter07multimedia.MultiMediaActivity
 import com.shakespace.firstlinecode.chapter08network.NetWorkActivity
+import com.shakespace.firstlinecode.chapter09service.ServiceActivity
 import com.shakespace.firstlinecode.global.start
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -59,6 +60,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         chapter_8.onClick(NetWorkActivity::class.java)
+
+        chapter_9.onClick(ServiceActivity::class.java)
 
     }
 
