@@ -9,7 +9,9 @@ import android.os.IBinder
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.shakespace.firstlinecode.R
+import com.shakespace.firstlinecode.chapter09service.bestpratice.DownloadActivity
 import com.shakespace.firstlinecode.global.TAG
+import com.shakespace.firstlinecode.global.start
 import kotlinx.android.synthetic.main.activity_service.*
 
 class ServiceActivity : AppCompatActivity() {
@@ -75,10 +77,12 @@ class ServiceActivity : AppCompatActivity() {
 
 
         tv_intent_service.setOnClickListener {
-            MyIntentService.startActionFoo(this,"","")
+            MyIntentService.startActionFoo(this, "", "")
         }
 
-
+        tv_intent_download.setOnClickListener {
+            start(DownloadActivity::class.java)
+        }
     }
 }
 
