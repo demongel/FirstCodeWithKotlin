@@ -20,9 +20,6 @@ class NetWorkActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_net_work)
 
-
-
-
         tv_to_webview.setOnClickListener {
             start(WebViewActivity::class.java)
         }
@@ -35,7 +32,7 @@ class NetWorkActivity : AppCompatActivity() {
                 try {
                     result.text = "Coroutine start!"
                     Log.e(this.TAG, "onCreate:startTime --  ${System.currentTimeMillis()}")
-                    val contributors = api.getContributors("square", "retrofit").await()
+                    val contributors = api.getContributorsAsync("square", "retrofit").await()
                     Log.e(this.TAG, "onCreate:endTime --  ${System.currentTimeMillis()}")
                     Log.e(this.TAG, "onCreate: $contributors")
 
@@ -49,7 +46,7 @@ class NetWorkActivity : AppCompatActivity() {
 
 
         //  get Type in Kotlin
-        object : TypeToken<List<String>>() {
+        val type = object : TypeToken<List<String>>() {
         }.type
     }
 }

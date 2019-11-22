@@ -13,6 +13,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!--    for foreground service-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -21,9 +25,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".chapter09service.bestpratice.DownloadActivity"></activity>
+
+        <service
+            android:name=".chapter09service.bestpratice.DownloadService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".chapter11materialdesign.components.CollapsingToolbarActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".chapter11materialdesign.components.CoordinatorActivity" />
+        <activity android:name=".chapter11materialdesign.MaterialDesignActivity" />
+
         <service
             android:name=".chapter09service.MyIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
         <service
             android:name=".chapter09service.CommonService"
             android:enabled="true"

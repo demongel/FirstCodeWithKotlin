@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".chapter11materialdesign.components.CoordinatorActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--scroll :  toolbar will scroll up and finally hide when ScrollView scroll up -->
+        <!--enterAlways : scroll down and resume when ScrollView scroll down-->
+        <!--snap : will to  auto show or hide depends on scroll distance-->
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            >
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+
+        <TextView
+            android:background="@color/lightgreen"
+            android:layout_width="match_parent"
+            android:text="1\n1\n91\n71\n688\n889yh\n1\n1\n91\n71\n688\n889yh\n1\n1\n91\n71\n688\n889yh\n1\n1\n91\n71\n688\n889yh\n1\n1\n91\n71\n688\n889yh\n1\n1\n91\n71\n688\n889yh\n1\n1\n91\n71\n688\n889yh\n1\n1\n91\n71\n688\n889yh\n1\n1\n91\n71\n688\n889yh\n1\n1\n91\n71\n688\n889yh\n1\n1\n91\n71\n688\n889yh\n1\n1\n91\n71\n688\n889yh\n1\n1\n91\n71\n688\n889yh\n1\n1\n91\n71\n688\n889yh\n"
+            android:layout_height="2000dp" />
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

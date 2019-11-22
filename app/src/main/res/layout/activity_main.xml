@@ -59,6 +59,16 @@
             style="@style/HomeTextViewStyle"
             android:text="@string/chapter_9_activity" />
 
+        <TextView
+            android:id="@+id/chapter_10"
+            style="@style/HomeTextViewStyle"
+            android:text="@string/chapter_10_activity" />
+
+        <TextView
+            android:id="@+id/chapter_11"
+            style="@style/HomeTextViewStyle"
+            android:text="@string/chapter_11_activity" />
+
 
     </LinearLayout>
 </ScrollView>

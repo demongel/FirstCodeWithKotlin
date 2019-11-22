@@ -7,5 +7,5 @@ import retrofit2.http.Path
 interface Api {
 
     @GET("repos/{name}/{repo}/contributors")
-    fun getContributors(@Path("name") name: String, @Path("repo") repo: String): Deferred<List<Contributor>>
+    fun getContributorsAsync(@Path("name") name: String, @Path("repo") repo: String): Deferred<List<Contributor>>
 }

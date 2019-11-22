@@ -8,15 +8,16 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.reflect.TypeToken;
 import com.shakespace.firstlinecode.R;
 import com.shakespace.firstlinecode.chapter01activity.FirstActivity;
@@ -30,8 +31,8 @@ public class JavaActivity extends AppCompatActivity {
 
     private static final String TAG = "JavaActivity";
 
-    static{
-        Log.e(TAG, "static initializer: " );
+    static {
+        Log.e(TAG, "static initializer: ");
     }
 
 
@@ -81,9 +82,10 @@ public class JavaActivity extends AppCompatActivity {
         }
 
 
-        new TypeToken<List<String>>(){}.getType();
+        new TypeToken<List<String>>() {
+        }.getType();
 
-        new WebView(this).setWebViewClient(new WebViewClient(){
+        new WebView(this).setWebViewClient(new WebViewClient() {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
@@ -106,25 +108,26 @@ public class JavaActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
-    private void saveToFile(){
-        String data ="data";
+    private void saveToFile() {
+        String data = "data";
         FileOutputStream out = null;
         BufferedWriter writer = null;
-        try{
+        try {
             out = openFileOutput("data", Context.MODE_PRIVATE);
             writer = new BufferedWriter(new OutputStreamWriter(out));
             writer.write(data);
             writer.flush();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            try{
-                if (writer!=null){
+        } finally {
+            try {
+                if (writer != null) {
                     writer.close();
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.TypedValue
+import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -51,15 +53,24 @@ val Context.orientation: Int
         return this.resources.configuration.orientation
     }
 
-inline fun FragmentManager.inTransaction(func:FragmentTransaction.()->Unit){
+inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
     val fragmentTransaction = beginTransaction()
     fragmentTransaction.func()
     fragmentTransaction.commit()
 }
 
 
+fun View.dp2px(dp: Float): Int {
+    val px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.resources.displayMetrics)
+    return px.toInt()
+}
 
-//  need  need androidx  for this.currentList
+fun View.dpToPx(dp: Float): Int {
+    val scale = context.resources.displayMetrics.density
+    return (dp * scale + 0.5f).toInt()
+}
+
+//  need androidx  for this.currentList
 //  current version :androidx.recyclerview:recyclerview:1.1.0-beta01
 fun <T, VH : RecyclerView.ViewHolder> ListAdapter<T, VH>.updateList(list: List<T>?) {
     this.submitList(if (list == this.currentList) list.toList() else list)

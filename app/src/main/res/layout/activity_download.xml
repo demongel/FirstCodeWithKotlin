@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/start_download"
+            style="@style/HomeTextViewStyle"
+            android:text="Start Download" />
+
+        <TextView
+            android:id="@+id/pause_download"
+            style="@style/HomeTextViewStyle"
+            android:text="Pause Download" />
+
+        <TextView
+            android:id="@+id/cancel_download"
+            style="@style/HomeTextViewStyle"
+            android:text="Cancel Download" />
+
+
+    </LinearLayout>
+
+</ScrollView>
