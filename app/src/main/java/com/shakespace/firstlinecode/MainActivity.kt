@@ -13,6 +13,7 @@ import com.shakespace.firstlinecode.chapter06contentprovider.ContentProviderActi
 import com.shakespace.firstlinecode.chapter07multimedia.MultiMediaActivity
 import com.shakespace.firstlinecode.chapter08network.NetWorkActivity
 import com.shakespace.firstlinecode.chapter09service.ServiceActivity
+import com.shakespace.firstlinecode.chapter10LBS.LBSActivity
 import com.shakespace.firstlinecode.chapter11materialdesign.MaterialDesignActivity
 import com.shakespace.firstlinecode.global.start
 import kotlinx.android.synthetic.main.activity_main.*
@@ -64,6 +65,7 @@ class MainActivity : AppCompatActivity() {
 
         chapter_9.onClick(ServiceActivity::class.java)
 
+        chapter_10.onClick(LBSActivity::class.java)
 
         chapter_11.onClick(MaterialDesignActivity::class.java)
 

@@ -12,12 +12,15 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <!--    for foreground service-->
+    <!-- for foreground service -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-
     <application
+        android:name=".App"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -25,7 +28,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".chapter09service.bestpratice.DownloadActivity"></activity>
+        <activity android:name=".chapter10LBS.LBSActivity"></activity>
+        <activity android:name=".chapter09service.bestpratice.DownloadActivity" />
 
         <service
             android:name=".chapter09service.bestpratice.DownloadService"
@@ -132,6 +136,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--Baidu LBS-->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="dY4HhGXF7KAisyjvCD1RlDiLraym1TBD" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
     </application>
 
 </manifest>
