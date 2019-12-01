@@ -13,6 +13,10 @@
     <string name="chapter_10_activity">Chapter 10 LBS</string>
     <string name="chapter_11_activity">Chapter 11 Material Design</string>
 
+
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

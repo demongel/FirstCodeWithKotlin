@@ -14,9 +14,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-    <!-- for foreground service -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- for foreground service -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
@@ -28,7 +26,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".chapter10LBS.LBSActivity"></activity>
+        <activity
+            android:name=".chapter11materialdesign.components.DrawerLayoutActivity"
+            android:theme="@style/LightAppTheme"></activity>
+        <activity
+            android:name=".chapter11materialdesign.components.ToolbarActivity"
+            android:label="ToolBarPage"
+            android:theme="@style/LightAppTheme" />
+        <activity android:name=".chapter10LBS.LBSActivity" />
         <activity android:name=".chapter09service.bestpratice.DownloadActivity" />
 
         <service
@@ -40,7 +45,9 @@
             android:name=".chapter11materialdesign.components.CollapsingToolbarActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".chapter11materialdesign.components.CoordinatorActivity" />
-        <activity android:name=".chapter11materialdesign.MaterialDesignActivity" />
+        <activity
+            android:name=".chapter11materialdesign.MaterialDesignActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
             android:name=".chapter09service.MyIntentService"
@@ -135,9 +142,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!--Baidu LBS-->
+        </activity> <!-- Baidu LBS -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="dY4HhGXF7KAisyjvCD1RlDiLraym1TBD" />

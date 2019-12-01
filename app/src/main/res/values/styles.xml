@@ -23,7 +23,18 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/blueviolet</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorAccent">@color/burlywood</item>
     </style>
+
+    <style name="LightAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/blueviolet</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorAccent">@color/burlywood</item>
+    </style>
+
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
