@@ -34,10 +34,9 @@
                 android:text="Drawer Layout" />
 
             <TextView
-                android:id="@+id/tv_bind"
+                android:id="@+id/tv_app_bar"
                 style="@style/HomeTextViewStyle"
-                android:text=" " />
-
+                android:text="App Bar Layout" />
 
             <TextView
                 android:id="@+id/coordinator"

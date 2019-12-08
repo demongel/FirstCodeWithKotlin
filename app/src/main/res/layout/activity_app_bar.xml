@@ -5,26 +5,42 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context=".chapter11materialdesign.components.DrawerLayoutActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/Theme.AppCompat.Light" />
+            android:layout_height="wrap_content">
+
+            <!--scroll :  toolbar will scroll up and finally hide when ScrollView scroll up -->
+            <!--enterAlways : scroll down and resume when ScrollView scroll down-->
+            <!--snap : will to  auto show or hide depends on scroll distance-->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_scrollFlags="enterAlways|scroll|snap"
+                app:popupTheme="@style/Theme.AppCompat.Light" />
+        </com.google.android.material.appbar.AppBarLayout>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+            <!--        app:layout_behavior will notify AppBar scrolling-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <!--        seems set recycleview under fab will make some error-->
         <!--        elevation : show shadow  default also have shadow-->
@@ -33,10 +49,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:src="@drawable/ic_alipay"
+            android:layout_margin="16dp"
             android:background="@color/blueviolet"
-            app:elevation="8dp"
-            android:layout_margin="16dp" />
+            android:src="@drawable/ic_alipay"
+            app:elevation="8dp" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -51,12 +67,13 @@
     android:layout_marginTop="?actionBarSize" that nav will show below toolbar
     -->
     <com.google.android.material.navigation.NavigationView
+        android:fitsSystemWindows="true"
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:layout_marginTop="?actionBarSize"
-        android:background="@color/blueviolet"
+        android:background="@color/colorPrimary"
         app:headerLayout="@layout/head_layout"
         app:menu="@menu/menu_ui_drawer" />
 

@@ -27,8 +27,12 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".chapter11materialdesign.components.AppBarActivity"
+            android:theme="@style/LightAppTheme" />
+
+        <activity
             android:name=".chapter11materialdesign.components.DrawerLayoutActivity"
-            android:theme="@style/LightAppTheme"></activity>
+            android:theme="@style/LightAppTheme" />
         <activity
             android:name=".chapter11materialdesign.components.ToolbarActivity"
             android:label="ToolBarPage"
@@ -43,7 +47,7 @@
 
         <activity
             android:name=".chapter11materialdesign.components.CollapsingToolbarActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/LightAppTheme" />
         <activity android:name=".chapter11materialdesign.components.CoordinatorActivity" />
         <activity
             android:name=".chapter11materialdesign.MaterialDesignActivity"

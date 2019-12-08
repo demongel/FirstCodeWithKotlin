@@ -11,11 +11,17 @@ import com.shakespace.firstlinecode.R
 import com.shakespace.firstlinecode.chapter11materialdesign.adapter.FruitAdapter
 import com.shakespace.firstlinecode.chapter11materialdesign.bean.Fruit
 import com.shakespace.firstlinecode.global.showToast
-import kotlinx.android.synthetic.main.activity_darwer_layout.*
+import kotlinx.android.synthetic.main.activity_app_bar.*
+import kotlinx.android.synthetic.main.activity_darwer_layout.drawer_layout
+import kotlinx.android.synthetic.main.activity_darwer_layout.fab
+import kotlinx.android.synthetic.main.activity_darwer_layout.recycler_view
+import kotlinx.android.synthetic.main.activity_darwer_layout.toolbar
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
 
-class DrawerLayoutActivity : AppCompatActivity() {
-
+class AppBarActivity : AppCompatActivity() {
 
     val temp = mutableListOf<Fruit>(
         Fruit("apple", R.drawable.apple), Fruit("strawberry", R.drawable.strawberry),
@@ -24,7 +30,6 @@ class DrawerLayoutActivity : AppCompatActivity() {
 
     val fruiList = mutableListOf<Fruit>()
 
-
     /**
      * DrawerLayout need two sub view
      * first is main view
@@ -32,7 +37,7 @@ class DrawerLayoutActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_darwer_layout)
+        setContentView(R.layout.activity_app_bar)
 
         initData()
 
@@ -68,6 +73,19 @@ class DrawerLayoutActivity : AppCompatActivity() {
 
         recycler_view.layoutManager = GridLayoutManager(this, 2)
         recycler_view.adapter = FruitAdapter(fruiList)
+
+        refresh_view.setColorSchemeResources(R.color.colorPrimary)
+        refresh_view.setOnRefreshListener {
+            refreshFruits()
+        }
+
+    }
+
+    private fun refreshFruits() {
+        GlobalScope.launch {
+            delay(2000)
+            refresh_view.isRefreshing = false
+        }
 
     }
 
