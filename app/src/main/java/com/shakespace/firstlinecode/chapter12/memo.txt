@@ -1,0 +1,2 @@
+
+android:resizeableActivity="false"   --> forbid multiple window mode
