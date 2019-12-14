@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".chapter13weather.ui.WeatherActivity">
+
+    <fragment
+        android:id="@+id/area_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.shakespace.firstlinecode.chapter13weather.ui.AreaChooseFragment" />
+
+</FrameLayout>

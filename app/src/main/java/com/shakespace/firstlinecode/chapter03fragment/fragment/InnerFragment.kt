@@ -18,7 +18,7 @@ import com.shakespace.firstlinecode.global.TAG
  */
 class InnerFragment : Fragment() {
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         Log.d(TAG, "onAttach: ")
     }
@@ -29,8 +29,8 @@ class InnerFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         Log.d(this.TAG, "onCreateView: ")
         // Inflate the layout for this fragment

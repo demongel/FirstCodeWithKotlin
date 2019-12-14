@@ -69,6 +69,11 @@
             style="@style/HomeTextViewStyle"
             android:text="@string/chapter_11_activity" />
 
+        <TextView
+            android:id="@+id/chapter_13"
+            style="@style/HomeTextViewStyle"
+            android:text="@string/chapter_13_activity" />
+
         <!--        <TextView-->
         <!--            android:id="@+id/chapter_11"-->
         <!--            style="@style/HomeTextViewStyle"-->

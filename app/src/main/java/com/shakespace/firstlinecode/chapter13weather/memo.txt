@@ -1,0 +1,48 @@
+1. create model
+    @Entity(tableName = "city")  //  @Entity , one field with id
+    data class City(
+        @SerializedName("name") val cityName: String, @SerializedName("id") val cityCode: Int
+
+    )
+
+2. create dao
+    @Dao
+    interface PlaceDao {
+        @Query("SELECT * FROM province ORDER BY provinceCode")
+        fun getProvinces(): List<Province> //  这里不返回livedata ， 以便和retrofit 统一
+
+        @Insert(onConflict = OnConflictStrategy.REPLACE)
+        fun saveProvinces(provinces: List<Province>)
+    ,,,,
+
+3. create api,service,network
+
+4. create repository
+
+5. create AppDatabase
+
+    sync project
+
+6. create  Fragment， ViewModel， ViewModelFactory
+
+    viewmodel  中有对应的获取数据的方法，同时进行数据获取和异常处理
+        获取方式，调用repository 的获取方式
+        调用repository， 先从数据库获取，如果没有，再从网络获取
+
+        repository , 需要有dao实例和network的实例 ， 都是用单例方式获取
+        dao 需要用到Appdatabse 的单例，
+        AppDatabase 需要用到Context ，从fragment中获取，在创建ViewModelFactory时创建
+
+7. 正序理解
+    Frament中 通过ViewModel获取数据
+    ViewModel获取数据需要通过repository进行，那么需要ViewModel构造时需要repository，
+    这个repository通过ViewModelFactory 来构造。
+
+    创建repository需要读写数据库的Dao和获取网络数据的network实例，
+    构建repository单例时，将Dao单例和network单例传入
+
+    获取Dao需要通过AppDatabase , 构建Database需要 Context (获取全局)，这个需要从fragment中获取
+
+
+
+

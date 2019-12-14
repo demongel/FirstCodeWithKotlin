@@ -15,6 +15,7 @@ import com.shakespace.firstlinecode.chapter08network.NetWorkActivity
 import com.shakespace.firstlinecode.chapter09service.ServiceActivity
 import com.shakespace.firstlinecode.chapter10LBS.LBSActivity
 import com.shakespace.firstlinecode.chapter11materialdesign.MaterialDesignActivity
+import com.shakespace.firstlinecode.chapter13weather.ui.WeatherActivity
 import com.shakespace.firstlinecode.global.start
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -68,6 +69,8 @@ class MainActivity : AppCompatActivity() {
         chapter_10.onClick(LBSActivity::class.java)
 
         chapter_11.onClick(MaterialDesignActivity::class.java)
+
+        chapter_13.onClick(WeatherActivity::class.java)
 
     }
 
