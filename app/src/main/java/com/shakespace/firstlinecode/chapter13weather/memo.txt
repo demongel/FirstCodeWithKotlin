@@ -43,6 +43,17 @@
 
     获取Dao需要通过AppDatabase , 构建Database需要 Context (获取全局)，这个需要从fragment中获取
 
+    因构造ViewModelFactory的代码较长，需要创建 需要用AppDatabase的单例获取dao，获取network的单例，再构建repository ， 再构建factory
+    故将这部分抽出，放在InjectUtils中
+
+
+8. 总体来说，实现通过room和retrofit来获取需要需要：
+    1. 构建实体类 具体的model （entity）
+    2. 构建数据库操作类 dao和AppDatabase（用来创建数据库和获取dao）
+    3. 构建api （创建retrofit实例 ）和网络服务接口 (参数和返回类型)和具体请求类（构建具体服务，调用具体方法）
+    4. 构建仓库类，实现从本地和网络获取数据
+    5. 构建具体界面，fragment，ViewModel， factory， 通过ViewModel调用repository来获取数据
+
 
 
 

@@ -27,9 +27,11 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".chapter13weather.ui.WeatherActivity"
+            android:theme="@style/LightAppTheme" />
+        <activity
             android:name=".chapter11materialdesign.components.AppBarActivity"
             android:theme="@style/LightAppTheme" />
-
         <activity
             android:name=".chapter11materialdesign.components.DrawerLayoutActivity"
             android:theme="@style/LightAppTheme" />
