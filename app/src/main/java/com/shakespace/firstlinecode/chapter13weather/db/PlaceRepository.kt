@@ -35,9 +35,13 @@ class PlaceRepository private constructor(
     }
 
     suspend fun getCities(provinceId: Int) = withContext(Dispatchers.IO) {
-        cities = placeDao.getCities()
+        cities = placeDao.getCities(provinceId)
         if (cities.isNullOrEmpty()) {
-            cities = placeNetwork.fetchCityList(provinceId)
+            cities = placeNetwork.fetchCityList(provinceId).also {
+                it.forEach { city ->
+                    city.provinceId = provinceId
+                }
+            }
             saveCities(cities)
         }
         cities
@@ -48,9 +52,13 @@ class PlaceRepository private constructor(
     }
 
     suspend fun getCountyies(provinceId: Int, cityId: Int) = withContext(Dispatchers.IO) {
-        counties = placeDao.getCounties()
+        counties = placeDao.getCounties(cityId)
         if (counties.isNullOrEmpty()) {
-            counties = placeNetwork.fetchCountyList(provinceId, cityId)
+            counties = placeNetwork.fetchCountyList(provinceId, cityId).also {
+                it.forEach { county ->
+                    county.cityId = cityId
+                }
+            }
             saveCounties(counties)
         }
         counties

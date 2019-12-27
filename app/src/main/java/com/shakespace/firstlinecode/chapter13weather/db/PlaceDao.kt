@@ -21,14 +21,14 @@ interface PlaceDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveProvinces(provinces: List<Province>)
 
-    @Query("SELECT * FROM city ORDER BY cityCode")
-    fun getCities(): List<City>
+    @Query("SELECT * FROM city where provinceId = :provinceCode ORDER BY cityCode")
+    fun getCities(provinceCode: Int): List<City>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveCities(cities: List<City>)
 
-    @Query("SELECT * FROM county ORDER BY countyName")
-    fun getCounties(): List<County>
+    @Query("SELECT * FROM county  where cityId = :cityCode ORDER BY countyName")
+    fun getCounties(cityCode: Int): List<County>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveCounties(counties: List<County>)
