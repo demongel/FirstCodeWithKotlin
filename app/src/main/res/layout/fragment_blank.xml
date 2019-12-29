@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".chapter03fragment.fragment.BlankFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: com.shakespace.firstlinecode.chapter13weather.model.Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -22,6 +22,11 @@ import kotlinx.android.synthetic.main.fragment_area_choose.*
  */
 class AreaChooseFragment : Fragment() {
 
+    companion object {
+        fun newInstance() = AreaChooseFragment()
+    }
+
+
     enum class AREA {
         PROVINCE, CITY, COUNTY
     }
@@ -71,6 +76,10 @@ class AreaChooseFragment : Fragment() {
                 }
 
                 AREA.COUNTY -> {
+                    val county = counties?.get(position)
+                    county?.apply {
+                        (activity as WeatherActivity).navigateToWeatherFragment(county.weatherId)
+                    }
                 }
             }
         }

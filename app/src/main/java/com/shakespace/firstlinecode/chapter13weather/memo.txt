@@ -1,6 +1,6 @@
 1. create model
     @Entity(tableName = "city")  //  @Entity , one field with id
-    data class City(
+    data class com.shakespace.firstlinecode.chapter13weather.model.City(
         @SerializedName("name") val cityName: String, @SerializedName("id") val cityCode: Int
 
     )

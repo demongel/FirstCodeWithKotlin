@@ -2,12 +2,11 @@ package com.shakespace.firstlinecode.chapter13weather.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import com.shakespace.firstlinecode.chapter13weather.call
 import com.shakespace.firstlinecode.chapter13weather.db.PlaceRepository
 import com.shakespace.firstlinecode.chapter13weather.model.City
 import com.shakespace.firstlinecode.chapter13weather.model.County
 import com.shakespace.firstlinecode.chapter13weather.model.Province
-import kotlinx.coroutines.launch
 import java.util.*
 
 /**
@@ -52,13 +51,13 @@ class AreaChooseViewModel(private val repository: PlaceRepository) : ViewModel()
 
 
     //This scope will be canceled when ViewModel will be cleared
-    fun call(success: suspend () -> Unit, fail: suspend (Throwable) -> Unit) =
-        viewModelScope.launch {
-            try {
-                success()
-            } catch (t: Throwable) {
-                fail(t)
-            }
-        }
+//    fun call(success: suspend () -> Unit, fail: suspend (Throwable) -> Unit) =
+//        viewModelScope.launch {
+//            try {
+//                success()
+//            } catch (t: Throwable) {
+//                fail(t)
+//            }
+//        }
 
 }

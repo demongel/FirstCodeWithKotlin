@@ -5,7 +5,7 @@ package com.shakespace.firstlinecode.chapter13weather.network
  * 2019/12/14  17:36
  */
 class PlaceNetwork {
-
+    
     private val placeService = WeatherApi.create(PlaceService::class.java)
 
     suspend fun fetchProvinceList() = placeService.getProvinces().await()

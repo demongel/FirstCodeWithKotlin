@@ -3,7 +3,6 @@ package com.shakespace.firstlinecode.chapter13weather.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.shakespace.firstlinecode.R
-import kotlinx.android.synthetic.main.activity_weather.*
 
 class WeatherActivity : AppCompatActivity() {
 
@@ -11,16 +10,26 @@ class WeatherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
 
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.container, AreaChooseFragment.newInstance(), "area")
+            .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+            .commit()
     }
 
     override fun onBackPressed() {
-        try {
-            // might check visibility?
-            if ((area_fragment as AreaChooseFragment).handleBackPress()) {
+        val fragment = supportFragmentManager.findFragmentByTag("area")
+        if (fragment is AreaChooseFragment && fragment.isVisible) {
+            if (fragment.handleBackPress()) {
                 return
             }
-        } catch (e: Exception) {
         }
         super.onBackPressed()
+    }
+
+    fun navigateToWeatherFragment(weatherId: String) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, WeatherFragment.newInstance(weatherId), "weather")
+            .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+            .commit()
     }
 }
