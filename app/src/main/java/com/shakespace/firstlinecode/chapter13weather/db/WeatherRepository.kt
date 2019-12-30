@@ -23,13 +23,24 @@ class WeatherRepository(val dao: WeatherDao, val network: WeatherNetwork) {
     }
 
     suspend fun refreshWeather(weatherId: String) = withContext(Dispatchers.IO) {
-        network.fetchWeather(weatherId)
+        val weather = network.fetchWeather(weatherId)
+        val heWeather = weather.HeWeather[0]
+        dao.cacheWeatherInfo(heWeather, weatherId)
+        heWeather
     }
 
     suspend fun fetchBingPic(): String? = withContext(Dispatchers.IO) {
         var picUrl = dao.getCacheBingPicUrl()
         if (picUrl == null) {
             picUrl = network.fetchBingPicUrl()
+            dao.cacheBingPicUrl(picUrl)
+        }
+        picUrl
+    }
+
+    suspend fun refetchBingPic(): String? = withContext(Dispatchers.IO) {
+        val picUrl = network.fetchBingPicUrl()
+        if (picUrl.isNotEmpty()) {
             dao.cacheBingPicUrl(picUrl)
         }
         picUrl

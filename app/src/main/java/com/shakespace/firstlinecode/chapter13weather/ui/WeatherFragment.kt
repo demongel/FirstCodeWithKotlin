@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.shakespace.firstlinecode.App
+import com.shakespace.firstlinecode.R
 import com.shakespace.firstlinecode.chapter13weather.db.WeatherDao
 import com.shakespace.firstlinecode.chapter13weather.db.WeatherRepository
 import com.shakespace.firstlinecode.chapter13weather.model.DailyForecast
@@ -96,6 +97,11 @@ class WeatherFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        // refresh
+        refresh_view.setColorSchemeResources(R.color.colorPrimary)
+
+
         viewModel = ViewModelProviders.of(
             this, WeatherViewModelFactory(
                 WeatherRepository.getInstance(
@@ -109,13 +115,16 @@ class WeatherFragment : Fragment() {
         viewModel.weatherInfo.observe(this, Observer {
             showWeatherInfo(it)
             loge("----1111 $it")
+            refresh_view.isRefreshing = false
         })
 
         viewModel.bingPicUrl.observe(this, Observer {
             Glide.with(requireContext()).load(it).into(bing_pic_bg)
+            refresh_view.isRefreshing = false
         })
 
         viewModel.error.observe(this, Observer {
+            refresh_view.isRefreshing = false
             loge("----2222 $it")
         })
 
@@ -135,6 +144,11 @@ class WeatherFragment : Fragment() {
             loadBingPic()
         } else {
             Glide.with(requireContext()).load(bingUrl).into(bing_pic_bg)
+        }
+
+        refresh_view.setOnRefreshListener {
+            viewModel.refreshWeather(weatherId)
+            viewModel.refreshBingPic()
         }
 
     }

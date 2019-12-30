@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.shakespace.firstlinecode.chapter13weather.call
 import com.shakespace.firstlinecode.chapter13weather.db.WeatherRepository
 import com.shakespace.firstlinecode.chapter13weather.model.HeWeather
-import com.shakespace.firstlinecode.global.loge
 
 class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() {
 
@@ -22,7 +21,18 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
 
     fun loadBingPic() = call({
         val bingPic = repository.fetchBingPic()
-        loge(bingPic + "-----")
+    }, {
+        error.value = it.localizedMessage
+    })
+
+    fun refreshWeather(weatherId: String) = call({
+        weatherInfo.value = repository.refreshWeather(weatherId)
+    }, {
+        error.value = it.localizedMessage
+    })
+
+    fun refreshBingPic() = call({
+        bingPicUrl.value = repository.refetchBingPic()
     }, {
         error.value = it.localizedMessage
     })
