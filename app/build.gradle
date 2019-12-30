@@ -21,10 +21,37 @@ android {
 
         multiDexEnabled true
     }
+
+    // should be config in gradle.properties , this file is for global
+    signingConfigs {
+        config {
+            storeFile file(keystore_storeFile)
+            storePassword keystore_storePassword
+            keyAlias keystore_keyAlias
+            keyPassword keystore_keyPassword
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.config
+        }
+    }
+
+    flavorDimensions('default')
+    productFlavors {
+        // coule not be main here, or throw Duplicate key BuildableArtifactImpl (file collection)
+        // because default we have a main directory
+        xiaomi {
+            dimension 'default'
+            buildConfigField("boolean", "needUpdate", "true")
+        }
+
+        baidu {
+            dimension 'default'
+            buildConfigField("boolean", "needUpdate", "false")
         }
     }
 
