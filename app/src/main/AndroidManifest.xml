@@ -26,6 +26,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <service
+            android:name=".chapter13weather.service.AutoUpdateService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".chapter13weather.ui.WeatherActivity"
             android:theme="@style/LightAppTheme" />

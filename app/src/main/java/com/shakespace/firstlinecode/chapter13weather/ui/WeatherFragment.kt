@@ -1,5 +1,6 @@
 package com.shakespace.firstlinecode.chapter13weather.ui
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -23,6 +24,7 @@ import com.shakespace.firstlinecode.chapter13weather.db.WeatherRepository
 import com.shakespace.firstlinecode.chapter13weather.model.DailyForecast
 import com.shakespace.firstlinecode.chapter13weather.model.HeWeather
 import com.shakespace.firstlinecode.chapter13weather.network.WeatherNetwork
+import com.shakespace.firstlinecode.chapter13weather.service.AutoUpdateService
 import com.shakespace.firstlinecode.global.loge
 import kotlinx.android.synthetic.main.weather_aqi.*
 import kotlinx.android.synthetic.main.weather_forecast.*
@@ -159,6 +161,9 @@ class WeatherFragment : Fragment() {
             viewModel.refreshWeather(weatherId)
             viewModel.refreshBingPic()
         }
+
+        val updateIntent = Intent(activity, AutoUpdateService::class.java)
+        activity?.startService(updateIntent)
 
     }
 

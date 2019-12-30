@@ -53,6 +53,7 @@
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <fragment
+            android:layout_marginTop="?attr/actionBarSize"
             android:id="@+id/choose_area_fragment"
             android:name="com.shakespace.firstlinecode.chapter13weather.ui.AreaChooseFragment"
             android:layout_width="match_parent"
