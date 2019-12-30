@@ -26,6 +26,16 @@ class WeatherRepository(val dao: WeatherDao, val network: WeatherNetwork) {
         network.fetchWeather(weatherId)
     }
 
+    suspend fun fetchBingPic(): String? = withContext(Dispatchers.IO) {
+        var picUrl = dao.getCacheBingPicUrl()
+        if (picUrl == null) {
+            picUrl = network.fetchBingPicUrl()
+            dao.cacheBingPicUrl(picUrl)
+        }
+        picUrl
+    }
+
+
     companion object {
         // For Singleton instantiation
         @Volatile

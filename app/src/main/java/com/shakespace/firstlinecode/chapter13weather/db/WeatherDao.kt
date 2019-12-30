@@ -26,6 +26,16 @@ class WeatherDao {
         preferences.edit().putString(weatherId, Gson().toJson(heWeather)).apply()
     }
 
+    fun getCacheBingPicUrl(): String? {
+        return PreferenceManager.getDefaultSharedPreferences(App.context)
+            .getString("bing_pic", null)
+    }
+
+    fun cacheBingPicUrl(url: String) {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(App.context)
+        preferences.edit().putString("bing_pic", url).apply()
+    }
+
 
     companion object {
         @Volatile

@@ -13,6 +13,8 @@ class WeatherNetwork {
     suspend fun fetchWeather(weatherId: String) =
         weatherService.getWeather(weatherId, KEY).await()
 
+    suspend fun fetchBingPicUrl() = weatherService.getBingPic().await()
+
     companion object {
         // For Singleton instantiation
         @Volatile

@@ -76,7 +76,7 @@ class BlankFragment : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+        // TODO: com.shakespace.firstlinecode.chapter13weather.model.Update argument type and name
         fun onFragmentInteraction(uri: Uri)
     }
 

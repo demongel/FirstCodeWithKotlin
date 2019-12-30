@@ -6,6 +6,12 @@
     android:background="@color/colorPrimary"
     tools:context=".chapter13weather.ui.WeatherFragment">
 
+    <ImageView
+        android:id="@+id/bing_pic_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
     <ScrollView
         android:id="@+id/root_scroll_view"
         android:layout_width="match_parent"
@@ -14,6 +20,7 @@
         android:scrollbars="none">
 
         <LinearLayout
+            android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
