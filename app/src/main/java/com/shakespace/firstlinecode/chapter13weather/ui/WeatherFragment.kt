@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -34,6 +35,11 @@ import kotlinx.android.synthetic.main.weather_title.*
 class WeatherFragment : Fragment() {
 
     private var weatherId: String = ""
+        set(value) {
+            field = value // use field here
+            PreferenceManager.getDefaultSharedPreferences(App.context)
+                .edit().putString("weather_id", value).apply()
+        }
 
     companion object {
         fun newInstance(weatherId: String): WeatherFragment {
@@ -89,7 +95,7 @@ class WeatherFragment : Fragment() {
         // keep icon on statusbar , but android:fitsSystemWindows="true" not work
 //                activity ?. window ?. addFlags (WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         return inflater.inflate(
-            com.shakespace.firstlinecode.R.layout.weather_fragment,
+            R.layout.weather_fragment,
             container,
             false
         )
@@ -101,6 +107,9 @@ class WeatherFragment : Fragment() {
         // refresh
         refresh_view.setColorSchemeResources(R.color.colorPrimary)
 
+        nav_button.setOnClickListener {
+            drawer_layout.openDrawer(GravityCompat.START)
+        }
 
         viewModel = ViewModelProviders.of(
             this, WeatherViewModelFactory(
@@ -128,7 +137,7 @@ class WeatherFragment : Fragment() {
             loge("----2222 $it")
         })
 
-        val preferences = PreferenceManager.getDefaultSharedPreferences(App.context)
+        val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
         val weatherInfo = preferences.getString(weatherId, null)
         if (weatherInfo != null) {
@@ -198,6 +207,15 @@ class WeatherFragment : Fragment() {
         sport_text.text = "运动建议：" + heWeather.suggestion.sport.txt
 
 
+    }
+
+    fun refreshWeather(weatherId: String) {
+        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout.closeDrawer(GravityCompat.START)
+        }
+        this.weatherId = weatherId
+        viewModel.refreshWeather(weatherId)
+        refresh_view.isRefreshing = true
     }
 
 }

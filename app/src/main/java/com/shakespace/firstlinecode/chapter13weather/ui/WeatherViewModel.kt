@@ -15,7 +15,7 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
     fun getWeather(weatherId: String) = call({
         weatherInfo.value = repository.fetchWeather(weatherId)
     }, {
-        error.value = it.message
+        error.value = it.localizedMessage
     }
     )
 

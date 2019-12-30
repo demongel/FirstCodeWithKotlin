@@ -78,7 +78,13 @@ class AreaChooseFragment : Fragment() {
                 AREA.COUNTY -> {
                     val county = counties?.get(position)
                     county?.apply {
-                        (activity as WeatherActivity).navigateToWeatherFragment(county.weatherId)
+                        val weatherActivity = activity as WeatherActivity
+                        if (weatherActivity.isWeatherFragmentShowing) {
+                            // if yes ,just refreash
+                            weatherActivity.refreshWeatherFragment(county.weatherId)
+                        } else {
+                            weatherActivity.navigateToWeatherFragment(county.weatherId)
+                        }
                     }
                 }
             }
