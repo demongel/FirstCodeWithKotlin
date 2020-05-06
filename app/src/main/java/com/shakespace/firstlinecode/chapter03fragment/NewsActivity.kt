@@ -63,6 +63,7 @@ class NewsActivity : AppCompatActivity() {
             }
             moveToState(f, nextState, f.getNextTransition(), f.getNextTransitionStyle(), false);
 
+            在回退栈中，不一定会被移除。
             so, if inBackStack ,will move to nextState or CREATED,if nextState no INITIALIZING then fragment will not be destroy
             if no in BackStack , and nextState is INITIALIZING , fragment will be destroy
              */

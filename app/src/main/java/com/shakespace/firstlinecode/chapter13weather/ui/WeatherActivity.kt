@@ -15,7 +15,7 @@ class WeatherActivity : AppCompatActivity() {
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
         val weatherId = preferences.getString("weather_id", "")
 
-        if (weatherId.isEmpty()) {
+        if (weatherId!!.isEmpty()) {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.add(R.id.container, AreaChooseFragment.newInstance(), "area")
                 .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)

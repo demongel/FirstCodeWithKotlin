@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.shakespace.firstlinecode.R
 import com.shakespace.firstlinecode.chapter04broadcast.practice.BaseActivity
@@ -17,8 +16,8 @@ import kotlinx.android.synthetic.main.activity_broadcast.*
 
 
 /**
- * register in manifest : static
- * register by programming: dynamic
+ * register in manifest : static  静态注册
+ * register by programming: dynamic 动态注册
  *
  *
  */
@@ -106,7 +105,7 @@ class BroadcastActivity : BaseActivity() {
 
 
         tv_four.setOnClickListener {
-            val intent =Intent("com.example.broadcast.FORCE_OFFLINE")
+            val intent = Intent("com.example.broadcast.FORCE_OFFLINE")
             sendBroadcast(intent)
         }
 
@@ -128,7 +127,8 @@ class BroadcastActivity : BaseActivity() {
         override fun onReceive(context: Context?, intent: Intent?) {
 
             //NetworkCapabilities
-            val connectivityManager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val connectivityManager =
+                context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val networkInfo = connectivityManager.activeNetworkInfo
             // use android.net.ConnectivityManager.NetworkCallback instead
             if (networkInfo != null && networkInfo.isAvailable) {

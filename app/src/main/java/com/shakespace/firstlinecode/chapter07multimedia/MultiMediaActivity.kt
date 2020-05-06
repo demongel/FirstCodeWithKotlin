@@ -61,10 +61,15 @@ class MultiMediaActivity : AppCompatActivity() {
              *
              *      also can pass 0 .
              */
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val channel = NotificationChannel("first_code", "first_code", NotificationManager.IMPORTANCE_LOW)
+                val channel = NotificationChannel(
+                    "first_code",
+                    "first_code",
+                    NotificationManager.IMPORTANCE_LOW
+                )
                 channel.enableLights(true)
                 channel.lightColor = R.color.green
                 //  will show number on you app icon
@@ -78,9 +83,10 @@ class MultiMediaActivity : AppCompatActivity() {
                 notificationManager.createNotificationChannel(channel)
             }
 
-            val pendingIntent = PendingIntent.getActivity(this, 0, Intent(this, GambleActivity::class.java).also {
-                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            }, 0)
+            val pendingIntent =
+                PendingIntent.getActivity(this, 0, Intent(this, GambleActivity::class.java).also {
+                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                }, 0)
 
             val notification = NotificationCompat.Builder(this, "first_code")
                 //  xml(vector) is not acceptable here , only png or jpg
@@ -118,17 +124,23 @@ class MultiMediaActivity : AppCompatActivity() {
 
 
         tv_notification2.setOnClickListener {
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val channel = NotificationChannel("first_code", "first_code", NotificationManager.IMPORTANCE_HIGH)
+                val channel = NotificationChannel(
+                    "first_code",
+                    "first_code",
+                    NotificationManager.IMPORTANCE_HIGH
+                )
 
                 notificationManager.createNotificationChannel(channel)
             }
 
-            val pendingIntent = PendingIntent.getActivity(this, 0, Intent(this, GambleActivity::class.java).also {
-                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            }, 0)
+            val pendingIntent =
+                PendingIntent.getActivity(this, 0, Intent(this, GambleActivity::class.java).also {
+                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                }, 0)
 
             val notification = NotificationCompat.Builder(this, "first_code")
                 //  xml(vector) is not acceptable here , only png or jpg
@@ -201,7 +213,8 @@ class MultiMediaActivity : AppCompatActivity() {
                  *
                  *
                  */
-                imageUri = FileProvider.getUriForFile(this, "com.shakepspace.firstcode.provider", file)
+                imageUri =
+                    FileProvider.getUriForFile(this, "com.shakepspace.firstcode.provider", file)
             } else {
                 imageUri = Uri.fromFile(file)
             }
@@ -215,7 +228,11 @@ class MultiMediaActivity : AppCompatActivity() {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED
             ) {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    1
+                )
             } else {
                 pickPhoto()
             }
@@ -234,7 +251,12 @@ class MultiMediaActivity : AppCompatActivity() {
     private fun pickPhoto() {
         //  method 1  (this is better to use system gallery)
         // uri like : content://com.miui.gallery.open/raw/%2Fstorage%2Femulated%2F0%2FDCIM%2FCamera%2FIMG_20190528_211034.jpg
-        startActivityForResult(Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI), PICK_PHOTO)
+        startActivityForResult(
+            Intent(
+                Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            ), PICK_PHOTO
+        )
 
         // method 2
         // uri like: content://com.android.providers.media.documents/document/image%3A5056
@@ -245,7 +267,11 @@ class MultiMediaActivity : AppCompatActivity() {
     }
 
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         when (requestCode) {
             1 -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -263,7 +289,8 @@ class MultiMediaActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 TAKE_PHOTO -> {
-                    val bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(imageUri))
+                    val bitmap =
+                        BitmapFactory.decodeStream(contentResolver.openInputStream(imageUri!!))
                     iv_photo.setImageBitmap(bitmap)
                 }
 

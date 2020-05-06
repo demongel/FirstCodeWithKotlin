@@ -61,7 +61,7 @@ class AreaChooseFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
 
-        adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, dataList)
+        adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, dataList)
         list_view.adapter = adapter
 
         list_view.setOnItemClickListener { parent, view, position, id ->
@@ -107,7 +107,7 @@ class AreaChooseFragment : Fragment() {
             title.text = "中国"
         })
 
-        viewModel.cities.observe(this, Observer {
+        viewModel.cities.observe(requireActivity(), Observer {
             cities = it
             dataList.clear()
             it.forEach { city: City ->
@@ -119,7 +119,7 @@ class AreaChooseFragment : Fragment() {
             iv_back.visibility = View.VISIBLE
         })
 
-        viewModel.counties.observe(this, Observer {
+        viewModel.counties.observe(requireActivity(), Observer {
             counties = it
             dataList.clear()
             it.forEach { county: County ->

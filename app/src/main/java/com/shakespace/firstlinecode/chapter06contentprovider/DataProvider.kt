@@ -8,8 +8,6 @@ import android.net.Uri
 import com.shakespace.firstlinecode.chapter05persistent.sqlite.DatabaseHelper
 
 class DataProvider : ContentProvider() {
-
-
     companion object {
 
         val BOOK_DIR = 0
@@ -53,7 +51,8 @@ class DataProvider : ContentProvider() {
             }
             CATEGORY_ITEM -> {
                 val categoryId = uri.pathSegments[1]
-                deleteRows = dbHelper.writableDatabase.delete("Category", "id = ?", arrayOf(categoryId))
+                deleteRows =
+                    dbHelper.writableDatabase.delete("Category", "id = ?", arrayOf(categoryId))
             }
         }
         return deleteRows
@@ -78,7 +77,7 @@ class DataProvider : ContentProvider() {
         }
     }
 
-    override fun insert(uri: Uri, values: ContentValues): Uri? {
+    override fun insert(uri: Uri, values: ContentValues?): Uri? {
         var uriReturn: Uri? = null
         when (uriMatcher.match(uri)) {
             BOOK_DIR, BOOK_ITEM -> {
@@ -145,18 +144,26 @@ class DataProvider : ContentProvider() {
         var updateRows: Int = 0
         when (uriMatcher.match(uri)) {
             BOOK_DIR -> {
-                updateRows = dbHelper.writableDatabase.update("Book", values, selection, selectionArgs)
+                updateRows =
+                    dbHelper.writableDatabase.update("Book", values, selection, selectionArgs)
             }
             BOOK_ITEM -> {
                 val bookId = uri.pathSegments[1]
-                updateRows = dbHelper.writableDatabase.update("Book", values, "id = ?", arrayOf(bookId))
+                updateRows =
+                    dbHelper.writableDatabase.update("Book", values, "id = ?", arrayOf(bookId))
             }
             CATEGORY_DIR -> {
-                updateRows = dbHelper.writableDatabase.update("Category", values, selection, selectionArgs)
+                updateRows =
+                    dbHelper.writableDatabase.update("Category", values, selection, selectionArgs)
             }
             CATEGORY_ITEM -> {
                 val categoryId = uri.pathSegments[1]
-                updateRows = dbHelper.writableDatabase.update("Category", values, "id = ?", arrayOf(categoryId))
+                updateRows = dbHelper.writableDatabase.update(
+                    "Category",
+                    values,
+                    "id = ?",
+                    arrayOf(categoryId)
+                )
             }
         }
         return updateRows
