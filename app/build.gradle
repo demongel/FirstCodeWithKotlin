@@ -10,7 +10,7 @@ def version = '28.0.0'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion = '28.0.3'
+    buildToolsVersion = '29.0.2'
     defaultConfig {
         applicationId "com.shakespace.firstlinecode"
         minSdkVersion 19
