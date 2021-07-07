@@ -28,12 +28,12 @@ class MyIntentService : IntentService("MyIntentService") {
             ACTION_FOO -> {
                 val param1 = intent.getStringExtra(EXTRA_PARAM1)
                 val param2 = intent.getStringExtra(EXTRA_PARAM2)
-                handleActionFoo(param1, param2)
+                handleActionFoo(param1!!, param2!!)
             }
             ACTION_BAZ -> {
                 val param1 = intent.getStringExtra(EXTRA_PARAM1)
                 val param2 = intent.getStringExtra(EXTRA_PARAM2)
-                handleActionBaz(param1, param2)
+                handleActionBaz(param1!!, param2!!)
             }
         }
     }
@@ -44,7 +44,7 @@ class MyIntentService : IntentService("MyIntentService") {
      */
     private fun handleActionFoo(param1: String, param2: String) {
 
-        Log.e(this.TAG, "handleActionFoo: ${Thread.currentThread().id}" )
+        Log.e(this.TAG, "handleActionFoo: ${Thread.currentThread().id}")
     }
 
     /**
@@ -52,13 +52,13 @@ class MyIntentService : IntentService("MyIntentService") {
      * parameters.
      */
     private fun handleActionBaz(param1: String, param2: String) {
-        Log.e(this.TAG, "handleActionBaz: ${Thread.currentThread().id}" )
+        Log.e(this.TAG, "handleActionBaz: ${Thread.currentThread().id}")
     }
 
     override fun onDestroy() {
         super.onDestroy()
         // when onHandleIntent  finished , destroyed
-        Log.e(this.TAG, "onDestroy: executed" )
+        Log.e(this.TAG, "onDestroy: executed")
     }
 
     companion object {

@@ -63,9 +63,9 @@ class RecyclerViewActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         //  not compare index of list , so index will not changed if string is the same,
-        when (item?.itemId) {
+        when (item.itemId) {
             R.id.remove -> {
                 data = createNewData()
                 adapter.submitList(data)

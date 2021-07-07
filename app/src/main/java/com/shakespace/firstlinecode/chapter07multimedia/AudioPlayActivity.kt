@@ -78,10 +78,8 @@ class AudioPlayActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (player != null) {
-            player.stop()
-            player.release()
-        }
+        player.stop()
+        player.release()
     }
 
     private fun initMediaPlayer() {

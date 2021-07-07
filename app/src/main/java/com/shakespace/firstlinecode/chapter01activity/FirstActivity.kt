@@ -50,7 +50,7 @@ class FirstActivity : AppCompatActivity() {
                 intent.putExtra("data", "From First")
                 startActivity(intent)
             } catch (e: Exception) {
-                Log.e(this.TAG, e.message)
+                Log.e(this.TAG, e.message!!)
             }
         }
 
@@ -81,15 +81,19 @@ class FirstActivity : AppCompatActivity() {
     }
 
 
-    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
         super.onCreateContextMenu(menu, v, menuInfo)
         menu?.add(0, 1, 0, "Add")
         menu?.add(0, 2, 0, "Share")
         menu?.add(0, 3, 0, "Count")
     }
 
-    override fun onContextItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
             1 -> showToast("add")
             2 -> showToast("share")
             3 -> showToast("quit")
@@ -102,9 +106,9 @@ class FirstActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when (item?.itemId) {
+        when (item.itemId) {
             R.id.add -> {
                 showToast("show")
                 showType()
