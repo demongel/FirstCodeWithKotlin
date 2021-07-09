@@ -14,6 +14,7 @@ import com.shakespace.firstlinecode.global.loge
 import com.shakespace.firstlinecode.global.showToast
 import java.io.File
 
+@Suppress("DEPRECATION")
 class DownloadService : Service() {
 
     private var downloadTask: DownloadTask? = null
@@ -97,23 +98,21 @@ class DownloadService : Service() {
                 showToast("Canceled")
                 stopForeground(true)
             } else {
-                if (downloadUrl != null) {
-                    if (status == TYPE_FAILED || status == TYPE_PAUSED) {
-                        var fileName = downloadUrl.substringAfterLast("/")
-                        var dir =
-                            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                                .path
+                if (status == TYPE_FAILED || status == TYPE_PAUSED) {
+                    var fileName = downloadUrl.substringAfterLast("/")
+                    var dir =
+                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                            .path
 
-                        var file = File(dir + fileName)
-                        if (file.exists()) {
-                            file.delete()
-                        }
-                        getNotificationManager().cancel(1)
-                        stopForeground(true)
-                        Toast.makeText(this@DownloadService, "Canceled", Toast.LENGTH_SHORT).show()
-                    } else {
-                        showToast("File already download completed")
+                    var file = File(dir + fileName)
+                    if (file.exists()) {
+                        file.delete()
                     }
+                    getNotificationManager().cancel(1)
+                    stopForeground(true)
+                    Toast.makeText(this@DownloadService, "Canceled", Toast.LENGTH_SHORT).show()
+                } else {
+                    showToast("File already download completed")
                 }
             }
         }

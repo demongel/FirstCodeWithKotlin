@@ -43,6 +43,7 @@ class InnerFragment : Fragment() {
         Log.d(this.TAG, "onViewCreated: ")
     }
 
+    @Suppress("DEPRECATION")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         Log.d(this.TAG, "onActivityCreated: ")

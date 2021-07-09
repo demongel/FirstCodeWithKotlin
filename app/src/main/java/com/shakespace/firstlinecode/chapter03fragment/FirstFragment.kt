@@ -20,18 +20,13 @@ class FirstFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_first, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         to_second.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .add(R.id.container, SecondFragment(), SecondFragment::class.java.name)
                 .addToBackStack("stack2").commit()
         }
-    }
-
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
     }
 
     override fun onPause() {

@@ -82,6 +82,7 @@ class AudioPlayActivity : AppCompatActivity() {
         player.release()
     }
 
+    @Suppress("DEPRECATION")
     private fun initMediaPlayer() {
         try {
             val file = File(Environment.getExternalStorageDirectory(), "movie.mp4")
@@ -107,8 +108,9 @@ class AudioPlayActivity : AppCompatActivity() {
                     showToast("do not have permission")
                 }
             }
-            else -> " "
+            else -> Log.e(TAG,"")
         }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
     }
 }

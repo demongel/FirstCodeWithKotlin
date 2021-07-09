@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.shakespace.firstlinecode.chapter13weather.service
 
 import android.app.AlarmManager
@@ -13,6 +15,7 @@ import com.shakespace.firstlinecode.chapter13weather.network.WeatherNetwork
 import com.shakespace.firstlinecode.global.loge
 import kotlinx.coroutines.*
 
+@Suppress("DEPRECATION")
 class AutoUpdateService : Service() {
 
     override fun onBind(intent: Intent): IBinder {

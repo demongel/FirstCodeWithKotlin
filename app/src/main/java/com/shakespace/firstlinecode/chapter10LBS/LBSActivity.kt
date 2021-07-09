@@ -15,6 +15,7 @@ import com.shakespace.firstlinecode.R
 import com.shakespace.firstlinecode.global.showToast
 import kotlinx.android.synthetic.main.activity_lbs.*
 
+@Suppress("DEPRECATION")
 class LBSActivity : AppCompatActivity() {
 
     private lateinit var locationClient: LocationClient
@@ -136,6 +137,7 @@ class LBSActivity : AppCompatActivity() {
             }
             else -> ""
         }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onResume() {

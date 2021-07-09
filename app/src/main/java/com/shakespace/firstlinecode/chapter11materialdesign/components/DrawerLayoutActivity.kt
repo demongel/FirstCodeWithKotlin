@@ -80,7 +80,7 @@ class DrawerLayoutActivity : AppCompatActivity() {
      *  will change the icon of HomeAsUp
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item?.itemId) {
+        when (item.itemId) {
             android.R.id.home -> drawer_layout.openDrawer(GravityCompat.START)
         }
         return true

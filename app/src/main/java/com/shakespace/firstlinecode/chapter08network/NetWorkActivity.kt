@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+@Suppress("UNUSED_VARIABLE")
 class NetWorkActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

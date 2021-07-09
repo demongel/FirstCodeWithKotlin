@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.shakespace.firstlinecode.chapter13weather.ui
 
 import android.os.Bundle

@@ -2,6 +2,7 @@ package com.shakespace.firstlinecode.chapter01activity
 
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,6 +12,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.shakespace.firstlinecode.R
 import com.shakespace.firstlinecode.global.TAG
@@ -20,9 +25,36 @@ import kotlin.reflect.jvm.jvmName
 
 
 // singleTask
+@Suppress("UNUSED_VARIABLE", "LocalVariableName", "JAVA_CLASS_ON_COMPANION")
 class FirstActivity : AppCompatActivity() {
 
     var toast: Toast? = null
+
+    val launcher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result -> showToast(" Result is ${result?.data?.getStringExtra("result")}") }
+
+    val launcherPermission =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            showToast(" Result is $it")
+        }
+
+    val launcher2 = registerForActivityResult(object : ActivityResultContract<Boolean, String>() {
+        override fun createIntent(context: Context, input: Boolean?): Intent {
+            // input 是 launcher.launch 里传入的值
+            return Intent(context, SecondActivity::class.java)
+        }
+
+        override fun parseResult(resultCode: Int, intent: Intent?): String {
+            // 拿到结果转换成目标格式
+            return intent.toString()
+        }
+
+    }, object : ActivityResultCallback<String> {
+        override fun onActivityResult(result: String?) {
+            showToast(" Result is $result")
+        }
+    })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,23 +95,12 @@ class FirstActivity : AppCompatActivity() {
 
         tv_for_result.setOnClickListener {
             val intent = Intent(this, SecondActivity::class.java)
-            startActivityForResult(intent, 0x01)
+            launcher.launch(intent)
+//            launcherPermission.launch(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//            launcher2.launch(true)
+//            startActivityForResult(intent, 0x01)
         }
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                0x01 -> {
-
-                    showToast(" Result is ${data?.getStringExtra("result")}")
-                }
-                else -> showToast("Get Nothing")
-            }
-        }
-    }
-
 
     override fun onCreateContextMenu(
         menu: ContextMenu?,

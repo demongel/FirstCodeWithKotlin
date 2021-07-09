@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.shakespace.firstlinecode.chapter13weather.ui
 
 import android.content.Intent
@@ -13,8 +15,8 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.shakespace.firstlinecode.App
@@ -51,7 +53,14 @@ class WeatherFragment : Fragment() {
         }
     }
 
-    private lateinit var viewModel: WeatherViewModel
+    private val viewModel: WeatherViewModel by viewModels {
+        WeatherViewModelFactory(
+            WeatherRepository.getInstance(
+                WeatherDao.getInstance(),
+                WeatherNetwork.getInstance()
+            )
+        )
+    }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateView(
@@ -103,25 +112,14 @@ class WeatherFragment : Fragment() {
         )
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         // refresh
         refresh_view.setColorSchemeResources(R.color.colorPrimary)
 
         nav_button.setOnClickListener {
             drawer_layout.openDrawer(GravityCompat.START)
         }
-
-        viewModel = ViewModelProviders.of(
-            this, WeatherViewModelFactory(
-                WeatherRepository.getInstance(
-                    WeatherDao.getInstance(),
-                    WeatherNetwork.getInstance()
-                )
-            )
-        ).get(WeatherViewModel::class.java)
-
 
         viewModel.weatherInfo.observe(this, Observer {
             showWeatherInfo(it)

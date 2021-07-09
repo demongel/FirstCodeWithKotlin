@@ -21,6 +21,7 @@ const val TYPE_PAUSED = 2
 const val TYPE_CANCELED = 3
 const val TYPE_EXISTED = 4
 
+@Suppress("DEPRECATION")
 class DownloadTask(val iDownload: IDownload) : AsyncTask<String, Int, Int>() {
 
     private var isCanceled = false
@@ -55,7 +56,7 @@ class DownloadTask(val iDownload: IDownload) : AsyncTask<String, Int, Int>() {
             val client = OkHttpClient()
             val request = Request.Builder()
                 .addHeader("RANGE", "bytes=$downloadedSize-")
-                .url(downloadUrl)
+                .url(downloadUrl!!)
                 .build()
 
             val response = client.newCall(request).execute()

@@ -12,6 +12,7 @@ import com.shakespace.firstlinecode.global.showToast
 import kotlinx.android.synthetic.main.activity_video_play.*
 import java.io.File
 
+@Suppress("DEPRECATION")
 class VideoPlayActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,6 +72,6 @@ class VideoPlayActivity : AppCompatActivity() {
             }
             else -> " "
         }
-
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 }

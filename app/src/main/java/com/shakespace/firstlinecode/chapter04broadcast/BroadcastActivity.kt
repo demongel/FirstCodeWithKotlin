@@ -5,7 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkCapabilities
+import android.net.NetworkRequest
+import android.os.Build
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.shakespace.firstlinecode.R
 import com.shakespace.firstlinecode.chapter04broadcast.practice.BaseActivity
@@ -22,6 +27,8 @@ import kotlinx.android.synthetic.main.activity_broadcast.*
  *
  */
 class BroadcastActivity : BaseActivity() {
+    //NetworkCapabilities
+    val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
     lateinit var networkChangeReceiver: NetworkChangeReceiver
 
@@ -29,6 +36,7 @@ class BroadcastActivity : BaseActivity() {
 
     lateinit var localReceiver: LocalReceiver
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_broadcast)
@@ -50,6 +58,11 @@ class BroadcastActivity : BaseActivity() {
 
 
         initListener()
+
+        connectivityManager.registerNetworkCallback(
+            NetworkRequest.Builder().build(),
+            NetworkCallbackImpl()
+        )
     }
 
     private fun initListener() {
@@ -119,24 +132,20 @@ class BroadcastActivity : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(networkChangeReceiver)
-
         localBroadcastManager.unregisterReceiver(localReceiver)
     }
 
-    class NetworkChangeReceiver : BroadcastReceiver() {
+    @Suppress("DEPRECATION")
+    inner class NetworkChangeReceiver : BroadcastReceiver() {
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onReceive(context: Context?, intent: Intent?) {
-
-            //NetworkCapabilities
-            val connectivityManager =
-                context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val networkInfo = connectivityManager.activeNetworkInfo
             // use android.net.ConnectivityManager.NetworkCallback instead
             if (networkInfo != null && networkInfo.isAvailable) {
-                context.showToast(networkInfo.typeName)
+                context?.showToast(networkInfo.typeName)
             } else {
-                context.showToast("disconect")
+                context?.showToast("disconect")
             }
-
         }
     }
 
@@ -146,4 +155,36 @@ class BroadcastActivity : BaseActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    inner class NetworkCallbackImpl : ConnectivityManager.NetworkCallback() {
+        override fun onAvailable(network: Network) {
+            super.onAvailable(network)
+            showToast("onAvailable")
+        }
+
+        override fun onLost(network: Network) {
+            super.onLost(network)
+            showToast("onLost")
+        }
+
+        override fun onCapabilitiesChanged(
+            network: Network,
+            networkCapabilities: NetworkCapabilities
+        ) {
+            super.onCapabilitiesChanged(network, networkCapabilities);
+            if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
+                if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    showToast("onCapabilitiesChanged: 网络类型为wifi")
+                } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                    showToast("onCapabilitiesChanged: 蜂窝网络")
+                } else {
+                    showToast("onCapabilitiesChanged: 其他网络")
+                }
+            }
+        }
+    }
+
 }
+
+
+

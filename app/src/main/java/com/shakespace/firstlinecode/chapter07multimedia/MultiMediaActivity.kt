@@ -14,17 +14,20 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.shakespace.firstlinecode.R
+import com.shakespace.firstlinecode.global.TAG
 import com.shakespace.firstlinecode.global.showToast
 import com.shakespace.firstlinecode.global.start
 import kotlinx.android.synthetic.main.activity_multi_media.*
 import java.io.File
 
+@Suppress("DEPRECATION")
 class MultiMediaActivity : AppCompatActivity() {
 
     private var imageUri: Uri? = null
@@ -219,6 +222,7 @@ class MultiMediaActivity : AppCompatActivity() {
                 imageUri = Uri.fromFile(file)
             }
 
+            // change to 使用ActivityResultContract
             startActivityForResult(Intent("android.media.action.IMAGE_CAPTURE").apply {
                 putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
             }, TAKE_PHOTO)
@@ -280,12 +284,13 @@ class MultiMediaActivity : AppCompatActivity() {
                     showToast("do not have permission")
                 }
             }
-            else -> " "
+            else -> Log.e(TAG, "onRequestPermissionsResult: " )
         }
-
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 TAKE_PHOTO -> {

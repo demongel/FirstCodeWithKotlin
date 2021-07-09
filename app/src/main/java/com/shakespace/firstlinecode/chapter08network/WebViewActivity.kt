@@ -27,6 +27,7 @@ class WebViewActivity : AppCompatActivity() {
     }
 
 
+    @Suppress("DEPRECATION")
     fun setCookie(uri: Uri, cookie: String) {
 
         val host = uri.host

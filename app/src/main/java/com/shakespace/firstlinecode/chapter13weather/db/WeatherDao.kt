@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.shakespace.firstlinecode.chapter13weather.db
 
 import android.preference.PreferenceManager
@@ -9,6 +11,7 @@ import com.shakespace.firstlinecode.chapter13weather.model.HeWeather
  * created by  shakespace
  * 2019/12/27  23:09
  */
+@Suppress("DEPRECATION")
 class WeatherDao {
 
     fun getCacheWeatherInfo(weatherId: String): HeWeather? {

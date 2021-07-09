@@ -32,7 +32,7 @@ class FruitAdapter(val list: List<Fruit>) :
         val holder = ViewHolder(view)
 
         holder.cardView.setOnClickListener {
-            val position = holder.adapterPosition
+            val position = holder.bindingAdapterPosition
             val intent = Intent(parent.context, CollapsingToolbarActivity::class.java).also {
                 val fruit = list.get(position)
                 it.putExtra(FRUIT_NAME, fruit.name)

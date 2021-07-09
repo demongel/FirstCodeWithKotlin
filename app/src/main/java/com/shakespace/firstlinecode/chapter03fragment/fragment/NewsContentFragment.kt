@@ -28,8 +28,8 @@ class NewsContentFragment : Fragment() {
         return inflater.inflate(R.layout.news_content_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         if (news != null) {
             tv_title.text = news?.title
             tv_content.text = news?.content

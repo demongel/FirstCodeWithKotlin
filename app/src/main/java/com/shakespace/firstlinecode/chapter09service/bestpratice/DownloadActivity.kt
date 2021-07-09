@@ -80,7 +80,7 @@ class DownloadActivity : AppCompatActivity() {
             }
             else -> ""
         }
-
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onDestroy() {

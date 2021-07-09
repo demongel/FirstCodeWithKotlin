@@ -21,6 +21,7 @@ private const val EXTRA_PARAM2 = "com.shakespace.firstlinecode.chapter09service.
  * TODO: Customize class - update intent actions, extra parameters and static
  * helper methods.
  */
+@Suppress("UNUSED_PARAMETER")
 class MyIntentService : IntentService("MyIntentService") {
 
     override fun onHandleIntent(intent: Intent?) {

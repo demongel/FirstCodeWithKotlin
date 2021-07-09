@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_VARIABLE")
+
 package com.shakespace.firstlinecode.chapter05persistent
 
 import android.content.Context

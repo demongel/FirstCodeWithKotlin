@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.shakespace.firstlinecode.R
 import com.shakespace.firstlinecode.chapter13weather.InjectorUtil
 import com.shakespace.firstlinecode.chapter13weather.model.City
@@ -31,11 +31,10 @@ class AreaChooseFragment : Fragment() {
         PROVINCE, CITY, COUNTY
     }
 
-    private val viewModel by lazy {
-        ViewModelProviders.of(
-            this,
-            InjectorUtil.getAreaChooseViewModelFactory(requireContext()) // code is too long , use Util to make concise
-        ).get(AreaChooseViewModel::class.java)
+    private val viewModel: AreaChooseViewModel by viewModels {
+        InjectorUtil.getAreaChooseViewModelFactory(
+            requireContext()
+        )
     }
 
     var status = AREA.PROVINCE
@@ -59,12 +58,12 @@ class AreaChooseFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_area_choose, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, dataList)
         list_view.adapter = adapter
 
-        list_view.setOnItemClickListener { parent, view, position, id ->
+        list_view.setOnItemClickListener { _, _, position, _ ->
             when (status) {
                 AREA.PROVINCE -> {
                     selectedProvince = provinces?.get(position)
@@ -136,7 +135,6 @@ class AreaChooseFragment : Fragment() {
         })
 
         viewModel.getProcinces()
-        super.onActivityCreated(savedInstanceState)
     }
 
     private fun queryCounties() {

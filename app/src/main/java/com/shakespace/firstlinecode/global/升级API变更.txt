@@ -1,0 +1,106 @@
+
+30.0.3 + kotlin 1.5.10 + plugin 4.2.2 + gradle 7.1.1
+
+// 更新plugin后 ，第一次会进行 :app:compileBaiduDebugKotlin ，可以检查有哪些需要变更的API
+
+1. Warning: The 'kotlin-android-extensions' Gradle plugin is deprecated. Please use this migration guide (https://goo.gle/kotlin-android-extensions-deprecation)
+    to start working with View Binding (https://developer.android.com/topic/libraries/view-binding) and the 'kotlin-parcelize' plugin.
+
+2. startActivityForResult 废弃， 使用ActivityResultContract, ActivityResultCallback 替代
+
+    创建一个launcher
+                val launcher2 = registerForActivityResult(object : ActivityResultContract<Boolean, String>() {
+                    override fun createIntent(context: Context, input: Boolean?): Intent {
+                        // input 是 launcher.launch 里传入的值
+                        return Intent(context, SecondActivity::class.java)
+                    }
+
+                    override fun parseResult(resultCode: Int, intent: Intent?): String {
+                        // 拿到结果转换成目标格式
+                        return intent.toString()
+                    }
+
+                }, object : ActivityResultCallback<String> {
+                    override fun onActivityResult(result: String?) {
+                        showToast(" Result is $result")
+                    }
+                })
+    registerForActivityResult 返回一个 ActivityResultLauncher<I> ，launch的参数类型是这个泛型类型
+
+    在需要的地方调用
+        launcher2.launch(true)
+
+    申请权限可以使用 ActivityResultContracts.RequestPermission()
+
+2. onActivityCreated 废弃 ， 使用onViewCreated 替代
+
+3. setUserVisibleHint 废弃
+
+4. connectivityManager.activeNetworkInfo 废弃
+    使用
+                      connectivityManager.registerNetworkCallback(
+                            NetworkRequest.Builder().build(),
+                            NetworkCallbackImpl()
+                        )
+
+                  @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+                    inner class NetworkCallbackImpl : ConnectivityManager.NetworkCallback() {
+                        override fun onAvailable(network: Network) {
+                            super.onAvailable(network)
+                            showToast("onAvailable")
+                        }
+
+                        override fun onLost(network: Network) {
+                            super.onLost(network)
+                            showToast("onLost")
+                        }
+
+                        override fun onCapabilitiesChanged(
+                            network: Network,
+                            networkCapabilities: NetworkCapabilities
+                        ) {
+                            super.onCapabilitiesChanged(network, networkCapabilities);
+                            if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
+                                if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                                    showToast("onCapabilitiesChanged: 网络类型为wifi")
+                                } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                                    showToast("onCapabilitiesChanged: 蜂窝网络")
+                                } else {
+                                    showToast("onCapabilitiesChanged: 其他网络")
+                                }
+                            }
+                        }
+                    }
+
+5. getExternalStorageDirectory 废弃
+
+6. PreferenceManager 废弃
+    使用 implementation ‘androidx.preference:preference:1.1.1’
+    或者 自定义一个工具类
+
+7. SystemUiVisibility flags are deprecated. Use {@link WindowInsetsController}
+     * instead.
+     Use {@link Window#setStatusBarColor(int)} with a half-translucent color
+         * instead.
+    Use {@link Window#setNavigationBarColor(int)} with a half-translucent color
+         * instead.
+        * @deprecated Use {@link WindowInsets#getInsetsIgnoringVisibility(int)} instead to retrieve
+     * insets that don't change when system bars change visibility state.
+     */
+    @Deprecated
+    public static final int SYSTEM_UI_FLAG_LAYOUT_STABLE = 0x00000100;
+
+8. ViewModelProviders is deprecated
+    使用 val viewModel = ViewModelProvider(this, SavedStateViewModelFactory(application, this))
+            .get(MyViewModel::class.java)
+    或者viewModels
+
+9.  IntentService 废弃
+
+    * @see android.support.v4.app.JobIntentService
+    *
+    * @deprecated IntentService is subject to all the
+    *   <a href="/preview/features/background.html">background execution limits</a>
+    *   imposed with Android 8.0 (API level 26). Consider using {@link androidx.work.WorkManager}
+    *   or {@link androidx.core.app.JobIntentService}, which uses jobs
+    *   instead of services when running on Android 8.0 or higher.
